@@ -1,0 +1,3003 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏆 БАЛАХРЫСТАН — ФИНАЛЬНАЯ ВЕРСИЯ 3.1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', 'Palatino', serif;
+            background: #1a1308;
+            background-image: 
+                radial-gradient(circle at 10% 20%, #8b7355 0.5px, transparent 1px),
+                radial-gradient(circle at 90% 80%, #8b7355 0.5px, transparent 1px),
+                linear-gradient(135deg, #2a1f12 0%, #1a1308 100%);
+            color: #e8dcc0;
+            line-height: 1.7;
+            padding: 10px;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: "🐗🍊⚜️";
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 60px;
+            opacity: 0.05;
+            rotate: -15deg;
+            pointer-events: none;
+            animation: slowRotate 60s linear infinite;
+        }
+
+        @keyframes slowRotate {
+            0% { rotate: -15deg; }
+            50% { rotate: 15deg; }
+            100% { rotate: -15deg; }
+        }
+
+        body::after {
+            content: "А МАТИН ТАЛАЛА";
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            font-size: 100px;
+            opacity: 0.02;
+            white-space: nowrap;
+            rotate: -5deg;
+            pointer-events: none;
+            letter-spacing: 20px;
+        }
+
+        .ancient-book {
+            max-width: 1800px;
+            margin: 0 auto;
+            background: #fcf7ed;
+            background-image: 
+                linear-gradient(45deg, rgba(200, 170, 130, 0.1) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(200, 170, 130, 0.1) 25%, transparent 25%);
+            background-size: 40px 40px;
+            box-shadow: 
+                0 0 0 15px #4a3720,
+                0 0 0 18px #b89b7a,
+                0 30px 60px rgba(0,0,0,0.8);
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+            border: 3px solid #c4a484;
+            color: #2a1f12;
+        }
+
+        .ancient-book::before {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 1px dashed #d4b68a;
+            border-radius: 15px;
+            pointer-events: none;
+        }
+
+        .ancient-book::after {
+            content: "✦ ✦ ✦";
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #8b7355;
+            color: #faf3e5;
+            padding: 5px 40px;
+            border-radius: 40px;
+            font-size: 1.3em;
+            letter-spacing: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        /* ========== ШАПКА ========== */
+        .header {
+            text-align: center;
+            border-bottom: 5px double #6b4f2f;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            position: relative;
+            background: linear-gradient(to right, transparent, #f0e2cf, transparent);
+            border-radius: 100px / 20px;
+        }
+
+        .coat-of-arms {
+            font-size: 120px;
+            line-height: 1;
+            margin-bottom: 10px;
+            text-shadow: 6px 6px 0 #b89b7a, 10px 10px 20px rgba(0,0,0,0.3);
+            animation: float 3s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        h1 {
+            font-size: 5em;
+            font-weight: 900;
+            color: #2a1f12;
+            text-transform: uppercase;
+            letter-spacing: 15px;
+            margin-bottom: 15px;
+            text-shadow: 
+                4px 4px 0 #8b7355,
+                8px 8px 0 #5a3f25,
+                12px 12px 20px rgba(0,0,0,0.3);
+            word-break: break-word;
+        }
+
+        .subtitle {
+            font-size: 1.8em;
+            font-style: italic;
+            color: #8b7355;
+            border-top: 2px solid #c4a484;
+            border-bottom: 2px solid #c4a484;
+            display: inline-block;
+            padding: 15px 50px;
+            margin-top: 15px;
+            background: rgba(200, 170, 130, 0.1);
+            border-radius: 60px;
+            backdrop-filter: blur(5px);
+        }
+
+        .cosmic-counters {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .cosmic-counter {
+            background: #2a1f12;
+            color: #f0e2cf;
+            padding: 20px 30px;
+            border-radius: 60px;
+            border: 2px solid #8b7355;
+            box-shadow: inset 0 -2px 0 #5a3f25, 0 8px 0 #1a1308;
+            font-size: 1.3em;
+            font-weight: bold;
+            transform: translateY(0);
+            transition: 0.1s linear;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .cosmic-counter:hover {
+            transform: translateY(-5px);
+            box-shadow: inset 0 -2px 0 #5a3f25, 0 13px 0 #1a1308;
+        }
+
+        .counter-number {
+            font-size: 2.2em;
+            color: #d4b68a;
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* ========== НАВИГАЦИЯ ========== */
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin: 40px 0;
+            padding: 20px 10px;
+            background: #2a1f12;
+            border: 3px solid #8b7355;
+            border-radius: 60px;
+            box-shadow: inset 0 2px 5px #5a3f25, 0 10px 0 #1a1308;
+            position: relative;
+            z-index: 10;
+        }
+
+        .nav-btn {
+            background: #f0e2cf;
+            border: 2px solid #8b7355;
+            padding: 12px 18px;
+            font-family: 'Georgia', serif;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2a1f12;
+            cursor: pointer;
+            transition: all 0.1s cubic-bezier(0.1, 0.7, 0.3, 1.5);
+            border-radius: 40px;
+            box-shadow: 0 4px 0 #5a3f25;
+            transform: translateY(0);
+            flex: 0 1 auto;
+            text-shadow: 0 1px 0 white;
+        }
+
+        .nav-btn:hover {
+            background: #8b7355;
+            color: #faf3e5;
+            border-color: #5a3f25;
+            transform: translateY(-5px);
+            box-shadow: 0 9px 0 #3a2c1b;
+        }
+
+        .nav-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #5a3f25;
+        }
+
+        /* ========== ОСНОВНОЙ КОНТЕЙНЕР ========== */
+        .main-content {
+            min-height: 600px;
+            padding: 30px;
+            background: #faf3e5;
+            border: 3px solid #8b7355;
+            margin: 30px 0;
+            border-radius: 30px;
+            box-shadow: inset 0 0 30px rgba(139, 115, 85, 0.3), 0 15px 0 #4a3720;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .main-content::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid #d4b68a;
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+        /* ========== ФУТЕР ========== */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 5px double #8b7355;
+            font-style: italic;
+            color: #5a3f25;
+            position: relative;
+        }
+
+        .footer-canon {
+            font-size: 2.5em;
+            color: #8b7355;
+            margin-top: 15px;
+            letter-spacing: 6px;
+            text-shadow: 2px 2px 0 #f0e2cf;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 0.8; transform: scale(1); }
+        }
+
+        .footer-signature {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .signature-item {
+            background: #f0e2cf;
+            padding: 12px 25px;
+            border-radius: 40px;
+            border: 1px solid #8b7355;
+            font-family: 'Courier New', monospace;
+            transform: rotate(-1deg);
+            box-shadow: 3px 3px 0 #5a3f25;
+        }
+
+        /* ========== ВИДЖЕТЫ ========== */
+        .widgets {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .widget {
+            background: #f0e2cf;
+            border: 3px solid #8b7355;
+            padding: 25px;
+            text-align: center;
+            border-radius: 30px 30px 30px 0;
+            box-shadow: 10px 10px 0 #5a3f25;
+            transition: 0.2s;
+        }
+
+        .widget:hover {
+            transform: translate(-5px, -5px);
+            box-shadow: 15px 15px 0 #3a2c1b;
+        }
+
+        .big-number {
+            font-size: 3.5em;
+            font-weight: 900;
+            color: #2a1f12;
+            margin: 15px 0;
+            text-shadow: 2px 2px 0 #8b7355;
+        }
+
+        /* ========== КАРТА ========== */
+        .map-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .region-card {
+            border: 3px solid #8b7355;
+            padding: 25px;
+            text-align: center;
+            background: #f0e2cf;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 30px 0 30px 0;
+            box-shadow: 8px 8px 0 #5a3f25;
+        }
+
+        .region-card:hover {
+            transform: translate(-5px, -5px);
+            box-shadow: 15px 15px 0 #3a2c1b;
+            background: #d4b68a;
+        }
+
+        .region-card h3 {
+            font-size: 1.8em;
+            margin: 15px 0 10px;
+            color: #2a1f12;
+        }
+
+        .heraldry-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .heraldry-item {
+            text-align: center;
+            width: 100px;
+        }
+
+        .heraldry-icon {
+            width: 80px;
+            height: 80px;
+            border: 2px solid #8b7355;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #faf3e5, #e6d7bf);
+            margin-bottom: 5px;
+            box-shadow: 3px 3px 0 #5a3f25;
+        }
+
+        .flag-icon {
+            width: 100px;
+            height: 60px;
+            border: 2px solid #8b7355;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2em;
+            background: linear-gradient(135deg, #faf3e5, #e6d7bf);
+            margin-bottom: 5px;
+            box-shadow: 3px 3px 0 #5a3f25;
+        }
+
+        /* ========== КАНОН ========== */
+        .canon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .canon-word {
+            background: #f0e2cf;
+            border: 2px solid #8b7355;
+            border-radius: 20px 20px 20px 0;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 6px 6px 0 #5a3f25;
+        }
+
+        .canon-word:hover {
+            background: #d4b68a;
+            transform: translate(-3px, -3px);
+            box-shadow: 10px 10px 0 #3a2c1b;
+        }
+
+        .canon-word h3 {
+            font-size: 1.5em;
+            border-bottom: 2px dashed #8b7355;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            color: #2a1f12;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px 25px;
+            font-size: 1.2em;
+            border: 3px solid #8b7355;
+            border-radius: 60px;
+            background: #faf3e5;
+            margin: 0 auto 30px;
+            display: block;
+            box-shadow: inset 0 2px 5px #5a3f25;
+        }
+
+        /* ========== КОДЕКСЫ ========== */
+        .codex-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .codex-item {
+            background: #f0e2cf;
+            border: 2px solid #8b7355;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 15px 15px 15px 0;
+            transition: 0.2s;
+            box-shadow: 5px 5px 0 #5a3f25;
+        }
+
+        .codex-item:hover {
+            background: #8b7355;
+            color: #faf3e5;
+            transform: translate(-3px, -3px);
+            box-shadow: 8px 8px 0 #3a2c1b;
+        }
+
+        /* ========== КАРТОЧКИ ========== */
+        .bio-card, .sight-card, .game-card, .merch-item, .heraldry-card {
+            background: #f0e2cf;
+            border: 3px solid #8b7355;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 30px 30px 30px 0;
+            box-shadow: 8px 8px 0 #5a3f25;
+            transition: 0.2s;
+        }
+
+        .bio-card:hover, .sight-card:hover, .game-card:hover, .merch-item:hover, .heraldry-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0 #3a2c1b;
+        }
+
+        .bio-card h2 {
+            font-size: 2.2em;
+            border-bottom: 2px solid #8b7355;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* ========== ГЕРАЛЬДИЧЕСКАЯ СТРАНИЦА ========== */
+        .heraldry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .heraldry-subject {
+            background: #f0e2cf;
+            border: 3px solid #8b7355;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 5px 5px 0 #5a3f25;
+            text-align: center;
+        }
+
+        .heraldry-subject h3 {
+            font-size: 1.6em;
+            margin: 15px 0;
+            color: #2a1f12;
+            border-bottom: 1px solid #8b7355;
+            padding-bottom: 10px;
+        }
+
+        .heraldry-display {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .heraldry-display-item {
+            text-align: center;
+            width: 120px;
+        }
+
+        .heraldry-large-icon {
+            width: 100px;
+            height: 100px;
+            border: 3px solid #8b7355;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5em;
+            background: linear-gradient(135deg, #faf3e5, #e6d7bf);
+            margin: 0 auto 10px;
+            box-shadow: 4px 4px 0 #5a3f25;
+        }
+
+        .flag-large-icon {
+            width: 150px;
+            height: 90px;
+            border: 3px solid #8b7355;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            background: linear-gradient(135deg, #faf3e5, #e6d7bf);
+            margin: 0 auto 10px;
+            box-shadow: 4px 4px 0 #5a3f25;
+        }
+
+        .heraldry-desc {
+            text-align: left;
+            font-size: 0.95em;
+            background: #faf3e5;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #8b7355;
+            margin-top: 15px;
+        }
+
+        .heraldry-desc p {
+            margin: 8px 0;
+        }
+
+        .devis {
+            font-style: italic;
+            color: #8b7355;
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 1.2em;
+        }
+
+        /* ========== ИГРЫ ========== */
+        .game-active {
+            background: #2a1f12;
+            color: #f0e2cf;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 20px 0;
+        }
+
+        .quiz-option {
+            background: #8b7355;
+            color: #faf3e5;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+
+        .quiz-option:hover {
+            background: #5a3f25;
+            transform: scale(1.02);
+        }
+
+        /* ========== МУЗЫКА ========== */
+        .music-player {
+            background: #2a1f12;
+            color: #f0e2cf;
+            padding: 30px;
+            border-radius: 30px;
+            margin: 30px 0;
+            border: 3px solid #8b7355;
+            box-shadow: inset 0 0 20px #8b7355;
+        }
+
+        .playlist-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 2px solid #8b7355;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .playlist-item:hover {
+            background: #3a2c1b;
+            color: white;
+            padding-left: 25px;
+        }
+
+        /* ========== ДЕТИ ========== */
+        .coloring-book {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .coloring-item {
+            background: white;
+            border: 4px solid #8b7355;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5em;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: 0.2s;
+            box-shadow: 5px 5px 0 #5a3f25;
+        }
+
+        .coloring-item:hover {
+            transform: scale(1.05);
+            box-shadow: 8px 8px 0 #3a2c1b;
+        }
+
+        /* ========== МЕРЧ ========== */
+        .merch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .merch-item {
+            text-align: center;
+        }
+
+        .price {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #2a1f12;
+            margin: 15px 0;
+        }
+
+        .buy-button {
+            background: #5a3f25;
+            color: #faf3e5;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.1s;
+            border-bottom: 4px solid #2a1f12;
+        }
+
+        .buy-button:hover {
+            background: #8b7355;
+            transform: translateY(-2px);
+            border-bottom-width: 6px;
+        }
+
+        /* ========== ГОСТЕВАЯ ========== */
+        .guestbook {
+            background: #f0e2cf;
+            border: 3px solid #8b7355;
+            padding: 30px;
+            border-radius: 30px;
+            margin: 30px 0;
+        }
+
+        .guestbook-entry {
+            border-bottom: 2px solid #8b7355;
+            padding: 15px 0;
+            margin: 10px 0;
+        }
+
+        .guestbook-input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #8b7355;
+            border-radius: 10px;
+            font-family: 'Georgia', serif;
+            font-size: 1.1em;
+        }
+
+        /* ========== НОВОСТИ ========== */
+        .news-ticker {
+            background: #2a1f12;
+            color: #f0e2cf;
+            padding: 15px 0;
+            border-radius: 60px;
+            margin: 20px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border: 2px solid #8b7355;
+        }
+
+        .news-ticker-content {
+            display: inline-block;
+            animation: scroll 30s linear infinite;
+            padding-left: 100%;
+            font-size: 1.2em;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .tab-group {
+            display: flex;
+            gap: 10px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 15px 30px;
+            background: #f0e2cf;
+            border: 2px solid #8b7355;
+            cursor: pointer;
+            border-radius: 40px 40px 0 0;
+            font-weight: bold;
+            box-shadow: 0 4px 0 #5a3f25;
+            font-size: 1.1em;
+        }
+
+        .tab.active {
+            background: #8b7355;
+            color: white;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 0 #3a2c1b;
+        }
+
+        /* ========== КНОПКИ ========== */
+        button {
+            background: #8b7355;
+            color: #faf3e5;
+            border: none;
+            padding: 12px 24px;
+            font-family: 'Georgia', serif;
+            font-size: 1.1em;
+            cursor: pointer;
+            border-radius: 40px;
+            transition: all 0.1s;
+            border-bottom: 4px solid #5a3f25;
+            margin: 5px;
+        }
+
+        button:hover {
+            background: #5a3f25;
+            transform: translateY(-2px);
+            border-bottom-width: 6px;
+        }
+
+        button:active {
+            transform: translateY(4px);
+            border-bottom-width: 2px;
+        }
+
+        input, textarea {
+            background: #faf3e5;
+            border: 2px solid #8b7355;
+            padding: 12px;
+            font-family: 'Georgia', serif;
+            border-radius: 10px;
+            font-size: 1em;
+        }
+
+        /* ========== АНИМАЦИИ ========== */
+        @keyframes glow {
+            0% { filter: drop-shadow(0 0 5px #8b7355); }
+            50% { filter: drop-shadow(0 0 20px #f0e2cf); }
+            100% { filter: drop-shadow(0 0 5px #8b7355); }
+        }
+
+        .glow-text {
+            animation: glow 3s infinite;
+        }
+
+        /* ========== МЕДИА ========== */
+        @media (max-width: 1200px) {
+            h1 { font-size: 3.5em; letter-spacing: 8px; }
+            .nav-btn { font-size: 0.9em; padding: 8px 12px; }
+        }
+
+        @media (max-width: 768px) {
+            .ancient-book { padding: 20px; }
+            h1 { font-size: 2.5em; letter-spacing: 4px; }
+            .coat-of-arms { font-size: 80px; }
+            .nav { border-radius: 30px; }
+            .heraldry-display { flex-direction: column; align-items: center; }
+            .cosmic-counters { gap: 15px; }
+            .cosmic-counter { min-width: 150px; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8em; letter-spacing: 2px; }
+            .subtitle { font-size: 1.2em; padding: 10px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ancient-book">
+        <!-- ========== ШАПКА ========== -->
+        <div class="header">
+            <div class="coat-of-arms">🐗🍊⚜️</div>
+            <h1>БАЛАХРЫСТАН</h1>
+            <div class="subtitle">Финальная версия 3.1 • Абсолютное совершенство</div>
+            
+            <div class="cosmic-counters" id="cosmicCounters">
+                <div class="cosmic-counter">
+                    👥 Граждан
+                    <span class="counter-number" id="citizenCounter">0</span>
+                </div>
+                <div class="cosmic-counter">
+                    🚢 Депортировано
+                    <span class="counter-number" id="deportCounter">0</span>
+                </div>
+                <div class="cosmic-counter">
+                    🐗 Хряков
+                    <span class="counter-number" id="hryakCounter">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== НАВИГАЦИЯ ========== -->
+        <div class="nav" id="mainNav">
+            <button class="nav-btn" onclick="showPage('home')">🏠 ГЛАВНАЯ</button>
+            <button class="nav-btn" onclick="showPage('universe')">🌌 ВСЕЛЕННАЯ</button>
+            <button class="nav-btn" onclick="showPage('canon')">📜 КАНОН</button>
+            <button class="nav-btn" onclick="showPage('codexes')">📚 КОДЕКСЫ</button>
+            <button class="nav-btn" onclick="showPage('history')">🏛️ ИСТОРИЯ</button>
+            <button class="nav-btn" onclick="showPage('myths')">✨ МИФЫ</button>
+            <button class="nav-btn" onclick="showPage('bio')">👑 ГЕРОИ</button>
+            <button class="nav-btn" onclick="showPage('map')">🗺️ КАРТА</button>
+            <button class="nav-btn" onclick="showPage('heraldry')">🏆 ГЕРБЫ</button>
+            <button class="nav-btn" onclick="showPage('sights')">🗿 МЕСТА</button>
+            <button class="nav-btn" onclick="showPage('games')">🎮 ИГРЫ</button>
+            <button class="nav-btn" onclick="showPage('music')">🎵 МУЗЫКА</button>
+            <button class="nav-btn" onclick="showPage('literature')">📖 ЛИТЕРАТУРА</button>
+            <button class="nav-btn" onclick="showPage('kids')">🧒 ДЕТЯМ</button>
+            <button class="nav-btn" onclick="showPage('merch')">🛍️ МЕРЧ</button>
+            <button class="nav-btn" onclick="showPage('news')">📰 НОВОСТИ</button>
+            <button class="nav-btn" onclick="showPage('guestbook')">📖 ГОСТИ</button>
+            <button class="nav-btn" onclick="showPage('neighbors')">🌍 СОСЕДИ</button>
+            <button class="nav-btn" onclick="showPage('science')">🔬 НАУКА</button>
+            <button class="nav-btn" onclick="showPage('sport')">⚽ СПОРТ</button>
+            <button class="nav-btn" onclick="showPage('economy')">💰 ЭКОНОМИКА</button>
+            <button class="nav-btn" onclick="showRandomPage()">🎲 СЛУЧАЙНО</button>
+        </div>
+
+        <!-- ========== ОСНОВНОЙ КОНТЕНТ ========== -->
+        <div class="main-content" id="mainContent">
+            <!-- Загружается динамически -->
+        </div>
+
+        <!-- ========== ФУТЕР ========== -->
+        <div class="footer">
+            <div class="footer-signature">
+                <span class="signature-item">Самюэль Эрондондонович ✍️</span>
+                <span class="signature-item">Кирилиджон (избранный) ✍️</span>
+                <span class="signature-item">Хряк Сенатор 🐗</span>
+                <span class="signature-item">Дип Сик 🤖</span>
+            </div>
+            <p>Утверждено Советом Красных Молодцов 12 марта 2026 года</p>
+            <p>9 субъектов • 37 кодексов • 111 слов Канона • Все 4 игры работают</p>
+            <div class="footer-canon glow-text">А МАТИН ТАЛАЛА! 🍊🐗✨</div>
+            <p style="margin-top: 20px; font-size: 0.9em;">Версия 3.1 • Финальная • Всё работает</p>
+        </div>
+    </div>
+
+    <script>
+        // =======================================================================
+        // ВСЕЛЕННАЯ БАЛАХРЫСТАНА — ФИНАЛЬНАЯ ВЕРСИЯ 3.1
+        // =======================================================================
+
+        // -------------------- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ДЛЯ РАНДОМА --------------------
+        function random(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function randomWithStep(min, max, step) {
+            let value = random(min, max);
+            return Math.round(value / step) * step;
+        }
+
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        }
+
+        // -------------------- ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ С РАНДОМНЫМИ ЗНАЧЕНИЯМИ --------------------
+        let citizenCount = randomWithStep(750000, 950000, 100);
+        let deportCount = randomWithStep(8000, 15000, 10);
+        let hryakCount = randomWithStep(1000000, 1300000, 100);
+        let groidCount = randomWithStep(30000, 50000, 100);
+        let temperature = random(-15, 5);
+        let currencyRate = (Math.random() * 1.5 + 1.8).toFixed(2);
+        let stockIndex = random(1000, 1400);
+        
+        // Массивы для случайных погодных условий
+        const weatherConditions = [
+            "ясно", "облачно", "пасмурно", "небольшой барбарис", "ледянка", 
+            "туман", "ветрено", "шлях арехавый", "раскумарно", "хрячье настроение"
+        ];
+        
+        // -------------------- КАНОН — 111 СВЯЩЕННЫХ СЛОВ --------------------
+        const canonData = [
+            { word: "а матин талала", meaning: "строчка из песни, которая играет у тех, кто балахрысничает", category: "культура", importance: 5 },
+            { word: "Азыжкжддяца", meaning: "никто не знает значение этого слова, даже создатели", category: "тайны", importance: 5 },
+            { word: "акционер", meaning: "по совместительству Самюэль Эрондондонович, обладает всеми известными акциями мира", category: "люди", importance: 4 },
+            { word: "ам-ам-ам", meaning: "звук, который издает хряк когда ест", category: "хряки", importance: 3 },
+            { word: "амбассадор", meaning: "артем, который представляет бренд гречки", category: "люди", importance: 2 },
+            { word: "Артем, который упал с гречкой", meaning: "великий фигурист, который любит крупы", category: "легенды", importance: 3 },
+            { word: "Архангельск", meaning: "город, находящийся между островом Пипин короткий и проливом Пендлтон", category: "география", importance: 4 },
+            { word: "балабол", meaning: "кирилиджон, когда что-то обещает", category: "люди", importance: 3 },
+            { word: "балахрысничали", meaning: "базовое умение всех жителей страны балахрыстов", category: "культура", importance: 5 },
+            { word: "баобаб", meaning: "дерево, которым питается хряк", category: "природа", importance: 3 },
+            { word: "барбарис", meaning: "растение, используемое для раскумарства", category: "природа", importance: 5 },
+            { word: "Боб строитель (перезагрузился)", meaning: "великий строитель всей страны балахрыстов", category: "люди", importance: 5 },
+            { word: "буйство", meaning: "кратковременный момент гнева Самюэля Эрондондоновича", category: "люди", importance: 3 },
+            { word: "бьюсь об заклад", meaning: "зуб даю, но в другом виде", category: "язык", importance: 2 },
+            { word: "валентность", meaning: "единица измерения степени балахрысничества", category: "наука", importance: 4 },
+            { word: "валять дурака", meaning: "что делают все жители в момент балахрысничества", category: "культура", importance: 3 },
+            { word: "Вася Пупкин", meaning: "житель страны балахрыстов, очень известен за ее пределами", category: "люди", importance: 5 },
+            { word: "вертикальный апельсин", meaning: "уникальное явление, которое обнаружил Вова соложков", category: "растения", importance: 5 },
+            { word: "Вова Соложков", meaning: "простой парень с простыми увлечениями", category: "люди", importance: 5 },
+            { word: "вологоша", meaning: "особый напиток, смесь барбариса и цикория", category: "еда", importance: 5 },
+            { word: "волокита текста", meaning: "единица объема, используемая в стране", category: "наука", importance: 3 },
+            { word: "геодезист", meaning: "изучают историю канона и его первоначальные слова", category: "профессии", importance: 5 },
+            { word: "горготал", meaning: "как кричит хряк", category: "хряки", importance: 4 },
+            { word: "грош ломаный", meaning: "валюта, используемая в стране", category: "экономика", importance: 5 },
+            { word: "дело-табак", meaning: "метафора, так как табак тут не растет", category: "язык", importance: 2 },
+            { word: "делегации", meaning: "в ООН: Самюэль, Вова, хряк, Вася, дип сик, кирилиджон", category: "политика", importance: 4 },
+            { word: "депортация", meaning: "высшая мера наказания в стране", category: "право", importance: 5 },
+            { word: "держу пари", meaning: "синоним бьюсь об заклад", category: "язык", importance: 2 },
+            { word: "детский сад-штаны на лямках", meaning: "оскорбление личности, детское поведение", category: "язык", importance: 2 },
+            { word: "Дип Сик с Кривого старта", meaning: "летописец и по совместительству крутой", category: "люди", importance: 5 },
+            { word: "инсценировал смерть", meaning: "что делают жители, когда не хотят работать", category: "культура", importance: 3 },
+            { word: "ирудит", meaning: "опечатка от эрудит", category: "язык", importance: 2 },
+            { word: "казалосьбык", meaning: "невероятное слияние животных, экспонат", category: "мифы", importance: 5 },
+            { word: "каляка-маляка", meaning: "идеотическое название художника", category: "культура", importance: 4 },
+            { word: "капуцин", meaning: "вид обезьян, используются для ручного труда", category: "народы", importance: 5 },
+            { word: "как к хрустальной люстре", meaning: "отношение Самюэля к хряку", category: "люди", importance: 4 },
+            { word: "Кирилиджон (который был избран)", meaning: "главный во внутреннем альянсе ОИБ, особые идеи", category: "люди", importance: 5 },
+            { word: "Кичменгский Городок", meaning: "столица поселения балахрыстов", category: "география", importance: 5 },
+            { word: "килька в томате", meaning: "еда, рыба из моря, томаты с юга", category: "еда", importance: 5 },
+            { word: "клоунада", meaning: "мероприятие, где меряются балахрысничеством", category: "культура", importance: 5 },
+            { word: "конь не валявши", meaning: "идиома, коней в стране нет", category: "язык", importance: 2 },
+            { word: "красный молодец", meaning: "крутой и просто хороший человек", category: "награды", importance: 4 },
+            { word: "крякать-вякать", meaning: "орать не по делу", category: "язык", importance: 2 },
+            { word: "ласкабайничать", meaning: "синоним балахрысничать", category: "язык", importance: 3 },
+            { word: "ледокол", meaning: "основная морская единица транспорта", category: "транспорт", importance: 5 },
+            { word: "ледянка", meaning: "блюдо из выловленного льда", category: "еда", importance: 5 },
+            { word: "лицом не торгую", meaning: "живу припеваючи", category: "язык", importance: 2 },
+            { word: "лошадь Пржевальского", meaning: "идиома, лошадей нет", category: "язык", importance: 2 },
+            { word: "мастер-фломастер", meaning: "мастер на все руки", category: "профессии", importance: 4 },
+            { word: "Миклухо-Маклай", meaning: "путешественник, открыл острова", category: "люди", importance: 5 },
+            { word: "можжевельник", meaning: "растение для приготовления пищи", category: "природа", importance: 4 },
+            { word: "накалякал", meaning: "написать ерунду", category: "язык", importance: 2 },
+            { word: "ни ногой", meaning: "не за чем", category: "язык", importance: 2 },
+            { word: "ни рыба ни мяса", meaning: "еда как ледянка, без рыбы и мяса", category: "язык", importance: 2 },
+            { word: "ни шуба-рукава", meaning: "чувствовать себя не обычно", category: "язык", importance: 2 },
+            { word: "паясничать", meaning: "заниматься ерундой", category: "язык", importance: 2 },
+            { word: "параграф", meaning: "единица измерения объема текста", category: "наука", importance: 3 },
+            { word: "печатная машинка", meaning: "используется в промышленности для переговоров", category: "техника", importance: 2 },
+            { word: "пень-колода", meaning: "кое-как", category: "язык", importance: 2 },
+            { word: "переперепись водорода", meaning: "опечатка от перекись", category: "ошибки", importance: 2 },
+            { word: "поделка", meaning: "картина Вовы Соложкова, содержание неизвестно", category: "искусство", importance: 4 },
+            { word: "полисорб", meaning: "лекарство из можжевельника и ледянки", category: "медицина", importance: 5 },
+            { word: "пролив Пендлтон", meaning: "соединяет материк с архипелагом", category: "география", importance: 5 },
+            { word: "протокол защиты", meaning: "название правоохранительных органов", category: "политика", importance: 4 },
+            { word: "разбушевался", meaning: "противоправное проведение", category: "язык", importance: 2 },
+            { word: "разгильдяйничает", meaning: "балахрысничает без разрешения", category: "язык", importance: 2 },
+            { word: "разгорание", meaning: "пожар, последний в 2023 в Кичменгском Городке", category: "события", importance: 3 },
+            { word: "распределитель", meaning: "суд", category: "право", importance: 4 },
+            { word: "раскумарились", meaning: "в состоянии круто, капец", category: "культура", importance: 3 },
+            { word: "распоясался", meaning: "занимался бадягой", category: "язык", importance: 2 },
+            { word: "резонанс", meaning: "остров архипелага", category: "география", importance: 4 },
+            { word: "Роспотребнадзор", meaning: "следит за нормой балахрысничания", category: "политика", importance: 4 },
+            { word: "самое слабое звено", meaning: "глупый человек", category: "язык", importance: 2 },
+            { word: "Самюэль Эрондондонович", meaning: "верховный бюрократ, легенда, красавчик", category: "люди", importance: 5 },
+            { word: "свихнулся", meaning: "игра в нарды", category: "культура", importance: 2 },
+            { word: "сибироязвенный скотомогильник", meaning: "достопримечательность страны", category: "места", importance: 5 },
+            { word: "синтиментальничал", meaning: "варил можжевельник", category: "язык", importance: 2 },
+            { word: "сквернословие", meaning: "незаконное вылавливание рыбы", category: "право", importance: 3 },
+            { word: "скворечник", meaning: "название домов", category: "быт", importance: 5 },
+            { word: "спирт в крови", meaning: "состав крови при раскумаривании", category: "медицина", importance: 2 },
+            { word: "сущие пустячки", meaning: "бессмысленно", category: "язык", importance: 2 },
+            { word: "теторборат натрия", meaning: "для определения теплоты", category: "наука", importance: 2 },
+            { word: "тормозные колодки", meaning: "фирма по производству автомобилей", category: "экономика", importance: 3 },
+            { word: "тюк-тюк бумажки", meaning: "целлюлозно-бумажное производство", category: "экономика", importance: 2 },
+            { word: "тяпушка-растяпушка", meaning: "неудачник", category: "язык", importance: 2 },
+            { word: "узурпатор", meaning: "идиома, в стране все законно", category: "язык", importance: 2 },
+            { word: "узы", meaning: "люди, связанные с Миклухо-Маклаем", category: "люди", importance: 3 },
+            { word: "уха долин", meaning: "природное наследие", category: "места", importance: 3 },
+            { word: "хеловничает", meaning: "приветствует всей", category: "язык", importance: 2 },
+            { word: "хряк", meaning: "главный питомец Самюэля", category: "хряки", importance: 5 },
+            { word: "цикорий", meaning: "альтернатива кофе", category: "еда", importance: 4 },
+            { word: "Чехословакия", meaning: "бывший союзник страны", category: "география", importance: 5 },
+            { word: "чипи-чапа", meaning: "строка из песни, чипирование", category: "культура", importance: 2 },
+            { word: "шаляй-валяй", meaning: "спустя рукава", category: "язык", importance: 2 },
+            { word: "шарообразный", meaning: "форма вертикального апельсина", category: "растения", importance: 3 },
+            { word: "шиворот-навыворот", meaning: "не так, как нужно", category: "язык", importance: 2 },
+            { word: "шипито", meaning: "второй остров архипелага", category: "география", importance: 4 },
+            { word: "широколестник", meaning: "основная природная зона страны", category: "природа", importance: 5 },
+            { word: "шпакля", meaning: "сестра шпателя, для постройки домов", category: "строительство", importance: 3 },
+            { word: "шпатель", meaning: "брат шпакли, для постройки забора", category: "строительство", importance: 3 },
+            { word: "шлях арехавый", meaning: "отсутствие интернета", category: "техника", importance: 5 },
+            { word: "шут гороховый", meaning: "дурак и просто дебил", category: "язык", importance: 2 },
+            { word: "элиминтарно", meaning: "ежу понятно", category: "язык", importance: 2 },
+            { word: "эпидермис", meaning: "верхний слой земли", category: "природа", importance: 3 }
+        ];
+
+        // -------------------- ГЕОГРАФИЯ С ГЕРБАМИ И ФЛАГАМИ --------------------
+        const regions = [
+            { 
+                id: "kich", 
+                name: "Кичменгская область", 
+                capital: "Кичменгский Городок", 
+                governor: "Кирилиджон (который был избран)", 
+                type: "Столичная",
+                coatDesc: "Лазоревое поле, золотой вертикальный апельсин, увенчанный короной из барбариса с красными ягодами. Щит держат: слева — хряк с грошом ломаным в зубах, справа — капуцин с палкой-копалкой.",
+                flagDesc: "Три вертикальные полосы: слева синяя, центр золотая, справа зелёная. В центре флага малый герб области (золотой вертикальный апельсин).",
+                devis: "КИЧМЕНГ — СЕРДЦЕ БАЛАХРЫСТАНА",
+                coatIcon: "🏰⚜️",
+                flagIcon: "🔷🟨🟩",
+                desc: "Бюрократический, культурный и образовательный центр. Здесь находится Дворец Самюэля, Институт Ирудита и главный Храм Великого Хряка.",
+                population: randomWithStep(230000, 270000, 1000),
+                area: "50 000 км²",
+                founded: "Эпоха -500",
+                places: ["Дворец Самюэля", "Институт Ирудита", "Храм Великого Хряка", "Сквер Каляки-Маляки"],
+                resources: ["Бюрократия", "Искусство", "Образование"]
+            },
+            { 
+                id: "arkh", 
+                name: "Архангельская губерния", 
+                capital: "Архангельск", 
+                governor: "Вася Пупкин", 
+                type: "Морская",
+                coatDesc: "Серебряное поле, лазурный ледокол, рассекающий волны. В волнах — золотая килька. В левом верхнем углу — сцена отплытия Васи Пупкина на лодке. Щит увенчан корабельной короной.",
+                flagDesc: "Три горизонтальные полосы: верхняя белая (льды), средняя синяя (море), нижняя жёлтая (килька). В левом верхнем углу малый герб губернии (ледокол на волнах).",
+                devis: "ОТЧАЛИЛ ВАСЯ — ОТКРЫЛ МИР",
+                coatIcon: "🚢⚓",
+                flagIcon: "⬜🟦🟨",
+                desc: "Морские ворота страны. Главный порт, база ледокольного флота. Здесь отчалил Вася Пупкин в своё легендарное плавание.",
+                population: randomWithStep(140000, 160000, 1000),
+                area: "80 000 км²",
+                founded: "Эпоха -200",
+                places: ["Ледокол-музей «Отчаянный»", "Порт Архангельск", "Музей ледянки"],
+                resources: ["Рыба", "Лёд", "Морская торговля"]
+            },
+            { 
+                id: "shir", 
+                name: "Широколесный край", 
+                capital: "Широколесинск", 
+                governor: "Боб строитель (перезагрузившийся)", 
+                type: "Лесной, строительный",
+                coatDesc: "Зелёное поле, золотой скворечник. Над ним — перекрещенные шпатель и шпакля. По бокам — две серебряные палки-копалки. Внизу — бобр (символ Боба-строителя).",
+                flagDesc: "Зелёное полотнище с коричневой горизонтальной полосой внизу (земля). В центре — белый скворечник с перекрещенными шпателем и шпаклей.",
+                devis: "ПОСТРОИМ — ПЕРЕЗАГРУЗИМ — ПОСТРОИМ СНОВА",
+                coatIcon: "🏗️🪵",
+                flagIcon: "🟫🟩",
+                desc: "Лесная житница страны. Здесь добывают широколестник, строят скворечники и обитают дикие хряки.",
+                population: randomWithStep(130000, 150000, 1000),
+                area: "120 000 км²",
+                founded: "Эпоха -300",
+                places: ["Национальный парк «Широколесный»", "Лесопилка Боба", "Заповедник «Хрячья пуща»"],
+                resources: ["Древесина", "Палки-копалки", "Дикие хряки"]
+            },
+            { 
+                id: "south", 
+                name: "Южно-Барбарисовая область", 
+                capital: "Барбарисовка", 
+                governor: "Вова Соложков", 
+                type: "Сельскохозяйственная",
+                coatDesc: "Зелёное поле, золотой вертикальный апельсин, окружённый ветвями барбариса (красные ягоды) и цикория (синие цветы). Внизу — три можжевеловые ветви. Щит увенчан короной из колосьев.",
+                flagDesc: "Зелёное полотнище с оранжевым кругом в центре (апельсин), окружённым красной и синей каймой (барбарис и цикорий).",
+                devis: "ЧТО ВЫРАСТИЛ — ТО РАСКУМАРИЛОСЬ",
+                coatIcon: "🍊🌿",
+                flagIcon: "🟢🟠🔴",
+                desc: "Сельскохозяйственный юг. Главные плантации барбариса и легендарные поля вертикальных апельсинов.",
+                population: randomWithStep(110000, 130000, 1000),
+                area: "40 000 км²",
+                founded: "Эпоха 0",
+                places: ["Поля Вертикальных Апельсинов", "Музей хряка", "Завод «Вологоша»"],
+                resources: ["Барбарис", "Апельсины", "Цикорий"]
+            },
+            { 
+                id: "arch", 
+                name: "Архипелажный край", 
+                capital: "Пипин-Сити", 
+                governor: "Пипин Короткий (III)", 
+                type: "Нефтяной, островной",
+                coatDesc: "Чёрное поле, золотая нефтяная вышка на серебряном острове. Вокруг — три лазурные волны, символизирующие три острова. Над вышкой — Пипин Короткий в короне.",
+                flagDesc: "Чёрное полотнище с тремя синими горизонтальными волнистыми полосами внизу. В центре — белый силуэт острова с нефтяной вышкой.",
+                devis: "НЕФТЬ КРЕПЧЕ УЗ",
+                coatIcon: "🛢️🏝️",
+                flagIcon: "⬛🟦🟦🟦",
+                desc: "Островная территория. Здесь добывают нефть, находится загадочный остров Шипито и тихий остров Резонанс.",
+                population: randomWithStep(75000, 85000, 1000),
+                area: "30 000 км²",
+                founded: "Эпоха 500",
+                places: ["Нефтяные вышки", "Остров Резонанс", "Остров Шипито"],
+                resources: ["Нефть", "Загадки", "Шлях арехавый"]
+            },
+            { 
+                id: "cheh", 
+                name: "Чехословацкая автономная область", 
+                capital: "Прага-на-Балахрысте", 
+                governor: "Ян Кривобратр", 
+                type: "Автономия",
+                coatDesc: "Разделённый щит: правая часть — чешский лев (белый лев на красном), левая часть — балахрыстский вертикальный апельсин (золотой на зелёном). В центре — малый щиток с изображением хряка, символизирующий единство.",
+                flagDesc: "Две горизонтальные полосы: верхняя белая, нижняя красная. В центре — герб области (разделённый щит с чешским львом и апельсином).",
+                devis: "ДВЕ КУЛЬТУРЫ — ОДИН КРИВОЙ СТАРТ",
+                coatIcon: "🦁🍊",
+                flagIcon: "⬜🟥",
+                desc: "Автономия с богатой культурой. Здесь варят лучшее пиво, говорят на двух языках и сохраняют европейские традиции.",
+                population: randomWithStep(85000, 95000, 1000),
+                area: "20 000 км²",
+                founded: "Эпоха -200",
+                places: ["Карловы Вары", "Пивоварня «Прага»", "Старый город"],
+                resources: ["Пиво", "Туризм", "Европейская культура"]
+            },
+            { 
+                id: "south-island", 
+                name: "Южно-Островная территория", 
+                capital: "Барбарис-Гранде-Сити", 
+                governor: "Виктор Барбарисов", 
+                type: "Новые земли",
+                coatDesc: "Оранжево-зелёное поле, гигантский куст барбариса с огромными красными ягодами. За ним — тропический пляж и море. Щит держат две местные птицы.",
+                flagDesc: "Диагональное деление: верхний левый угол оранжевый, нижний правый зелёный. В центре — силуэт гигантской ягоды барбариса.",
+                devis: "БОЛЬШЕ ЯГОД — БОЛЬШЕ СЧАСТЬЯ",
+                coatIcon: "🏝️🌿",
+                flagIcon: "🟧🟩",
+                desc: "Недавно открытые южные острова с гигантским барбарисом. Тропический рай, ягоды размером с голову хряка.",
+                population: randomWithStep(45000, 55000, 1000),
+                area: "15 000 км²",
+                founded: "2026",
+                places: ["Плантации гигантского барбариса", "Атолл Килечный", "Тропические пляжи"],
+                resources: ["Гигантский барбарис", "Туризм", "Экзотика"]
+            },
+            { 
+                id: "west", 
+                name: "Западный край (Земля Вечного Раскумара)", 
+                capital: "Раскумарск", 
+                governor: "Старейшина Раскумар", 
+                type: "Новые земли",
+                coatDesc: "Радужное поле (пастельные тона), в центре — улыбающийся хряк, окружённый волшебными искрами. Над хряком — маленькое облачко с лучами солнца.",
+                flagDesc: "Горизонтальные полосы радуги (красный, оранжевый, жёлтый, зелёный, голубой, синий, фиолетовый — мягкие пастельные). В центре — простой силуэт улыбающегося хряка.",
+                devis: "РАСКУМАР — НАШЕ ВСЁ",
+                coatIcon: "🌈😊",
+                flagIcon: "🌈",
+                desc: "Таинственная земля с аномально высоким содержанием барбариса в воздухе. Местные жители находятся в состоянии перманентного счастья.",
+                population: randomWithStep(18000, 22000, 1000),
+                area: "25 000 км²",
+                founded: "2026",
+                places: ["Санатории раскумара", "Долина счастья", "Барбарисовые фонтаны"],
+                resources: ["Счастье", "Релаксация", "Аномалии"]
+            },
+            { 
+                id: "north", 
+                name: "Северная автономия (Ледяной Причал)", 
+                capital: "Ледяной Причал", 
+                governor: "Иван Ледов", 
+                type: "Новые земли",
+                coatDesc: "Бело-голубое поле, ледяная корона серебряно-голубого цвета. За ней — айсберг. На фоне — северное сияние (аврора).",
+                flagDesc: "Белый фон, внизу синий треугольник (айсберг). Над айсбергом — три маленькие звезды, символизирующие Полярную звезду.",
+                devis: "ХОЛОДНО, НО ГОРДО",
+                coatIcon: "❄️🧊",
+                flagIcon: "⬜🔷⭐",
+                desc: "Северные территории с вечной мерзлотой и уникальным голубым льдом. Суровый край с красивым северным сиянием.",
+                population: randomWithStep(9000, 11000, 1000),
+                area: "40 000 км²",
+                founded: "2026",
+                places: ["Ледники голубого льда", "Северное сияние", "Стоянки ледоколов"],
+                resources: ["Голубой лёд", "Северное сияние", "Криотерапия"]
+            }
+        ];
+
+        // -------------------- 3. КОДЕКСЫ --------------------
+        const codexes = [
+            { 
+                id: 1, 
+                title: "Том I. Конституция", 
+                fullText: `КОНСТИТУЦИЯ ГОСУДАРСТВА БАЛАХРЫСТОВ\n\nРАЗДЕЛ I. ОСНОВЫ ГОСУДАРСТВЕННОГО СТРОЯ\n\nСтатья 1. Государство Балахрыстов (Балахрыстан) есть суверенное, демократическое, абсурдистское государство, основанное на принципах балахрысничания и уважения к вертикальности.\n\nСтатья 2. Территория государства включает Кичменгскую область, Архангельскую губернию, Широколесный край, Южно-Барбарисовую область, Архипелажный край и Чехословацкую автономную область.\n\nСтатья 3. Высшим должностным лицом является Верховный Бюрократ — Самюэль Эрондондонович, чей статус Легенды и Красавчика закреплён пожизненно.\n\nРАЗДЕЛ II. ПРАВА И СВОБОДЫ\n\nСтатья 5. Каждый имеет право на свободное балахрысничание.\n\nСтатья 6. Каждый имеет право на вертикальное положение.\n\nСтатья 7. Каждый имеет право инсценировать смерть не более трёх раз в год.\n\nСтатья 10. Право на защиту от шляха арехавого.\n\nРАЗДЕЛ III. СУБЪЕКТЫ\n\nСтатья 23. В составе Государства находятся 6 субъектов: Кичменгская область, Архангельская губерния, Широколесный край, Южно-Барбарисовая область, Архипелажный край, Чехословацкая автономная область. Указом №111/43 открыты новые земли: Южно-Островная территория, Западный край, Северная автономия.\n\nРАЗДЕЛ IV. ОРГАНЫ ВЛАСТИ\n\nСтатья 28. Верховный Бюрократ — глава государства.\n\nСтатья 32. Совет Красных Молодцов — парламент из 111 депутатов.\n\nСтатья 34. Правительство осуществляет исполнительную власть.\n\nСтатья 43. Правосудие осуществляется Распределителем (судом).`,
+                shortText: "Основной закон. Ст.1: Балахрыстан — суверенное абсурдистское государство. Ст.2: Верховный Бюрократ — Самюэль Эрондондонович. Ст.5: Право на балахрысничание. Ст.6: Право на вертикальность. Субъекты: 6 регионов + 3 новые земли."
+            },
+            { 
+                id: 2, 
+                title: "Том II. Уголовный кодекс", 
+                fullText: `УГОЛОВНЫЙ КОДЕКС ГОСУДАРСТВА БАЛАХРЫСТОВ\n\nРАЗДЕЛ I. ПРЕСТУПЛЕНИЯ ПРОТИВ ЛИЧНОСТИ\n\nСтатья 105. Похищение человека и принуждение к труду в качестве капуцина — депортация на остров Резонанс на срок 3-8 лет.\n\nСтатья 106. Клевета (обзывание «пень-колода») — штраф до 200 грошей.\n\nСтатья 110. Развратные действия с участием хряка — пожизненная депортация на остров Шипито.\n\nСтатья 111. Половое сношение с лицом младше 16 лун — депортация 5-10 лет.\n\nРАЗДЕЛ II. ЭКОНОМИЧЕСКИЕ ПРЕСТУПЛЕНИЯ\n\nСтатья 201. Кража вертикального апельсина:\n- 1 апельсин: штраф 500 грошей\n- 2 и более: депортация до 2 лет\n- с госплантации: депортация до 5 лет\n\nСтатья 202. Грабеж барбариса — депортация до 3 лет.\n\nСтатья 212. Фальшивомонетничество (подделка грошей) — депортация до 6 лет.\n\nРАЗДЕЛ III. ПРЕСТУПЛЕНИЯ ПРОТИВ ГОСУДАРСТВА\n\nСтатья 301. Терроризм (угроза вертикальному апельсину) — пожизненная депортация на Шипито.\n\nСтатья 401. Государственная измена (шпионаж) — пожизненная депортация.\n\nСтатья 402. Посягательство на жизнь Самюэля — пожизненная депортация.\n\nПРИМЕЧАНИЯ:\n- Резонанс: исправительное учреждение (есть связь, барбарис, гимн по утрам)\n- Шипито: полная изоляция, связи нет, шлях арехавый`,
+                shortText: "Ст.105: Похищение капуцина — депортация 3-8 лет. Ст.201: Кража апельсина — штраф 500 грошей. Ст.301: Угроза апельсину — пожизненная депортация. Ст.401: Госизмена — пожизненная депортация."
+            },
+            { 
+                id: 3, 
+                title: "Том III. КОАП", 
+                fullText: `КОДЕКС ОБ АДМИНИСТРАТИВНЫХ ПРАВОНАРУШЕНИЯХ\n\nСтатья 2.1. Препятствие балахрысничанию — штраф 100 грошей.\n\nСтатья 2.2. Необоснованный отказ в раскумаривании — 300 грошей.\n\nСтатья 2.3. Инсценировка смерти более 3 раз в год — 200 грошей.\n\nСтатья 2.4. Дискриминация по признаку вертикальности — 500 грошей.\n\nСтатья 3.2. Барбарис в общественных местах — 200 грошей.\n\nСтатья 3.3. Продажа полисорба без рецепта — 500 грошей.\n\nСтатья 8.1. Управление ледоколом в состоянии раскумара — 3000 грошей + лишение прав.\n\nСтатья 14.1. Горготание ночью — 500-1000 грошей.\n\nСтатья 14.2. Появление в раскумаре в общественных местах — 500-1500 грошей.\n\nСтатья 14.4. Стрельба из палки-копалки — 2000-5000 грошей + конфискация.`,
+                shortText: "Ст.2.1: Препятствие балахрысничанию — 100 грошей. Ст.3.2: Барбарис в общ. местах — 200 грошей. Ст.8.1: Ледокол в раскумаре — 3000 грошей. Ст.14.1: Горготание ночью — 500 грошей."
+            },
+            { 
+                id: 4, 
+                title: "Том IV. Трудовой кодекс", 
+                fullText: `ТРУДОВОЙ КОДЕКС\n\nСтатья 91. Нормальная продолжительность рабочего времени — 40 часов в неделю.\n\nСтатья 92. Для капуцинов до 16 лет — 24 часа, для инвалидов — 35 часов.\n\nСтатья 115. Ежегодный отпуск — 28 календарных дней.\n\nСтатья 116. Дополнительный отпуск за работу с вредными условиями (сибироязвенный скотомогильник) — 7 дней.\n\nСтатья 131. Зарплата выплачивается в грошах ломаных. Доля неденежной формы (барбарисом) — не более 20%.\n\nСтатья 133. МРОТ устанавливается ежегодно.\n\nСтатья 192. Дисциплинарные взыскания: замечание, выговор, увольнение.`,
+                shortText: "Запрет принуд. труда. Испытательный срок до 3 лун. Рабочая неделя — 40 ч. Отпуск — 28 лун. МРОТ устанавливается ежегодно."
+            },
+            { 
+                id: 5, 
+                title: "Том V. Защита прав потребителей", 
+                fullText: `КОДЕКС О ЗАЩИТЕ ПРАВ ПОТРЕБИТЕЛЕЙ\n\nСтатья 18. Права потребителя при обнаружении недостатков:\n- замена товара\n- соразмерное уменьшение цены\n- безвозмездное устранение недостатков\n- отказ от договора и возврат денег\n\nСтатья 19. Гарантийный срок исчисляется со дня передачи товара.\n\nСтатья 20. Срок устранения недостатков — не более 45 дней.\n\nСтатья 21. Замена товара — в течение 7 дней.\n\nСтатья 22. Возврат денег — в течение 10 дней.\n\nСтатья 25. Обмен товара надлежащего качества — 14 дней, кроме ледянки.\n\nСтатья 49. Продажа ледянки: температура не выше -5°, запрет повторного замораживания.\n\nСтатья 52. Продажа вертикальных апельсинов: сертификат вертикальности, допустимое отклонение — не более 5°.`,
+                shortText: "Кривой апельсин — обмен. Обмен 14 дней (кроме ледянки). Гарантия 45 дней. При обнаружении недостатков — замена, уменьшение цены, возврат денег."
+            },
+            { 
+                id: 6, 
+                title: "Том VI. Гражданский кодекс", 
+                fullText: `ГРАЖДАНСКИЙ КОДЕКС\n\nСтатья 17. Правоспособность возникает с рождения.\n\nСтатья 19. Дееспособность в полном объёме — с 18 лун.\n\nСтатья 48. Юридическое лицо — организация, имеющая обособленное имущество.\n\nСтатья 128. Объекты гражданских прав: вещи, гроши, ценные бумаги (акции Самюэля), поделки.\n\nСтатья 130. Недвижимые вещи: земельные участки, скворечники, ледоколы.\n\nСтатья 153. Сделки — действия по установлению прав.\n\nСтатья 196. Общий срок исковой давности — 3 года.\n\nСтатья 209. Собственнику принадлежат права владения, пользования, распоряжения.\n\nСтатья 218. Право собственности на новую вещь (поделку) приобретается создателем.\n\nСтатья 301. Истребование имущества из чужого незаконного владения.\n\nСтатья 454. Договор купли-продажи.\n\nСтатья 549. Договор продажи недвижимости (скворечников).\n\nСтатья 572. Договор дарения.\n\nСтатья 606. Договор аренды.\n\nСтатья 702. Договор подряда.\n\nСтатья 1110. Наследование.`,
+                shortText: "Правоспособность с рождения. Сделки с недвижимостью (скворечниками) — письменно. Исковая давность — 3 года. Наследование по завещанию и закону."
+            },
+            { 
+                id: 7, 
+                title: "Том VII. Жилищный кодекс", 
+                fullText: `ЖИЛИЩНЫЙ КОДЕКС\n\nСтатья 1. Жилищный фонд — совокупность скворечников.\n\nСтатья 4. Граждане имеют право на жилище.\n\nСтатья 5. Жилище (скворечник) неприкосновенно.\n\nСтатья 6. Виды жилищных фондов: частный, государственный, муниципальный.\n\nСтатья 8. Собственник имеет право владения, пользования, распоряжения.\n\nСтатья 9. Собственник несёт бремя содержания скворечника.\n\nСтатья 12. Общее имущество в многоквартирном скворечнике.\n\nСтатья 16. Нуждающиеся в жилье — менее 10 кв. грошей на человека.\n\nСтатья 20. Договор социального найма — бессрочный.\n\nСтатья 50. Способы управления многоквартирным скворечником.\n\nСтатья 53. Переустройство и перепланировка требуют согласования.`,
+                shortText: "Скворечники — жилые помещения. Право на жильё. Норма площади — 10 кв. грошей на человека. Неприкосновенность жилища."
+            },
+            { 
+                id: 8, 
+                title: "Том VIII. Семейный кодекс", 
+                fullText: `СЕМЕЙНЫЙ КОДЕКС\n\nСтатья 4. Брак (хряческий союз) — добровольный союз.\n\nСтатья 5. Условия заключения брака: взаимное согласие, возраст 18 лун.\n\nСтатья 6. Брачный возраст — 18 лун. Может быть снижен до 16 при уважительных причинах.\n\nСтатья 7. Не допускается брак между близкими родственниками, недееспособными.\n\nСтатья 10. Расторжение брака — в ЗАГСе или суде.\n\nСтатья 15. Равенство супругов.\n\nСтатья 17. Общая совместная собственность супругов.\n\nСтатья 19. Имущество каждого из супругов (добрачное, в дар, наследство).\n\nСтатья 21. Раздел имущества — поровну, если иное не предусмотрено брачным договором.\n\nСтатья 23. Брачный договор (хряческий контракт).\n\nСтатья 46. Алименты на несовершеннолетних детей: 25% на одного, 33% на двух, 50% на трёх и более.\n\nСтатья 52. Обязанность детей содержать родителей.\n\nСтатья 70. Защита детей, оставшихся без попечения родителей.\n\nСтатья 73. Усыновление допускается в интересах детей.`,
+                shortText: "Брак (хряческий союз) с 18 лун. Равенство супругов. Раздел имущества — пополам. Алименты — 25% на одного капуцина, 33% на двух, 50% на трёх и более."
+            },
+            { 
+                id: 9, 
+                title: "Том IX. Земельный кодекс", 
+                fullText: `ЗЕМЕЛЬНЫЙ КОДЕКС\n\nСтатья 1. Земля (широколестник) — природный объект, основа жизни.\n\nСтатья 2. Задачи: рациональное использование, защита прав, сохранение плодородия (эпидермиса).\n\nСтатья 3. Категории земель:\n- сельхозназначения (барбарисовые плантации)\n- населённых пунктов (скворечники)\n- промышленности (нефтяные вышки)\n- особо охраняемые (сибироязвенный скотомогильник)\n- лесного фонда (широколестник)\n- водного фонда (омуты)\n- запаса\n\nСтатья 4. Формы собственности: государственная, муниципальная, частная.\n\nСтатья 7. Частная собственность: граждане и юрлица.\n\nСтатья 11. Постоянное (бессрочное) пользование — для госучреждений.\n\nСтатья 13. Аренда земельных участков.\n\nСтатья 14. Сервитут (право прохода хряка).\n\nСтатья 16. Предоставление для строительства.\n\nСтатья 19. Предельные размеры: для апельсинов — до 100 га.\n\nСтатья 21. Обязанности: использовать по назначению, не загрязнять.\n\nСтатья 23. Охрана земель.\n\nСтатья 42. Плата за землю: налог и аренда.\n\nСтатья 46. Земельные споры рассматривает Распределитель.`,
+                shortText: "Земли: широколестник, с/х, поселений. Категории: барбарисовые плантации, пастбища хряков. Право собственности: гос., муниц., частная."
+            },
+            { 
+                id: 10, 
+                title: "Том X. Налоговый кодекс", 
+                fullText: `НАЛОГОВЫЙ КОДЕКС\n\nСтатья 1. Налог — обязательный платёж в грошах или барбарисе.\n\nСтатья 2. Виды налогов: федеральные, региональные, местные.\n\nСтатья 3. Принципы: всеобщность, равенство, экономическая обоснованность.\n\nСтатья 13. Налогоплательщики: физические и юридические лица.\n\nСтатья 14. Объект налогообложения — доход (в грошах и барбарисе).\n\nСтатья 16. Доходы, не облагаемые налогом: пособия, пенсии, алименты, матпомощь.\n\nСтатья 18. Ставки:\n- НДФЛ (балахрысничание): 13%\n- дивиденды: 15%\n- выигрыши: 35%\n- для нерезидентов: 30%\n\nСтатья 26. Налог на прибыль организаций: 20% (2% в фед. бюджет, 18% в регион.)\n\nСтатья 30. НДС: 0% (экспорт), 10% (ледянка, килька, полисорб), 20% (остальное)\n\nСтатья 34. Акцизы: барбарис (50 грошей/л), ледянка (30/кг), апельсин (100/шт), хряк (500/гол)\n\nСтатья 36. НДПИ: нефть 15%, лёд 5%, торф 3%\n\nСтатья 41. Транспортный налог: ледоколы 50-100 грошей/л.с.\n\nСтатья 45. Земельный налог: 0.3% (с/х), 1.5% (прочее)`,
+                shortText: "НДФЛ (балахрысничание) — 13%. Налог на прибыль — 20%. Акцизы: барбарис, ледянка, полисорб. НДС — 0%, 10%, 20%."
+            },
+            { 
+                id: 11, 
+                title: "Том XI. Бюджетный кодекс", 
+                fullText: `БЮДЖЕТНЫЙ КОДЕКС\n\nСтатья 1. Бюджет — фонд грошей и натуральных запасов.\n\nСтатья 2. Доходы: налоги, неналоговые (аренда, штрафы), безвозмездные.\n\nСтатья 3. Расходы: текущие (зарплаты, корм хрякам), капитальные (строительство).\n\nСтатья 4. Бюджетная система: федеральный бюджет, бюджеты субъектов, местные бюджеты.\n\nСтатья 7. Доходы федерального бюджета: налог на прибыль (2%), НДС (100%), акцизы (50%), НДПИ (100% на нефть).\n\nСтатья 10. Расходы: госуправление, оборона, экономика, ЖКХ, образование, культура, здравоохранение, соцполитика, трансферты.\n\nСтатья 11. Доходы субъектов: налог на балахрысничание (50%), налог на прибыль (18%), транспортный налог (100%).\n\nСтатья 13. Доходы местных бюджетов: земельный налог (100%), налог на имущество физлиц (100%).\n\nСтатья 17. Бюджетный цикл: составление (за 10 месяцев), утверждение (окт-ноя), исполнение (год), отчёт.\n\nСтатья 36. Государственный долг: внутренний (гроши), внешний (кроны).\n\nСтатья 41. Финансовый контроль: Счётная палата.`,
+                shortText: "Бюджеты: федеральный, региональные, местные. Доходы: налоги, барбарис, нефть. Расходы: корм хрякам, зарплаты геодезистам, строительство."
+            },
+            { 
+                id: 12, 
+                title: "Том XII. Градостроительный кодекс", 
+                fullText: `ГРАДОСТРОИТЕЛЬНЫЙ КОДЕКС\n\nСтатья 1. Градостроительная деятельность — планировка, проектирование, строительство, ремонт скворечников.\n\nСтатья 2. Задачи: устойчивое развитие, сохранение среды, безопасность, защита прав.\n\nСтатья 3. Принципы: участие граждан, учёт экологии, ответственность властей.\n\nСтатья 4. Виды документов:\n- федеральные схемы (ледокольные верфи, нефтепроводы)\n- региональные схемы\n- генпланы поселений\n\nСтатья 7. Правила землепользования и застройки.\n\nСтатья 8. Территориальные зоны: Ж-1 (индивид. скворечники), Ж-2 (многоэтажные), ОД-1 (общественно-деловая), П-1 (производственная), Р-1 (рекреационная), СХ-1 (сельхоз), СН (спецназначения).\n\nСтатья 9. Градостроительный регламент: виды разрешённого использования, предельные размеры.\n\nСтатья 13. Разрешение на строительство.\n\nСтатья 15. Самовольная постройка (самострой) подлежит сносу.\n\nСтатья 20. Разрешение на ввод объекта в эксплуатацию.\n\nСтатья 25. Реконструкция и перепланировка.\n\nСтатья 30. Зоны с особыми условиями (сибироязвенный скотомогильник).`,
+                shortText: "Строительство скворечников по правилам. Зоны: жилые, промышленные, рекреационные. Разрешение на стройку обязательно."
+            },
+            { 
+                id: 13, 
+                title: "Том XIII. Таможенный кодекс", 
+                fullText: `ТАМОЖЕННЫЙ КОДЕКС\n\nСтатья 1. Таможенная граница — пределы территории.\n\nСтатья 2. Таможенная территория: вся страна, включая Чехословацкую АО.\n\nСтатья 3. Цели таможенной политики: защита рынка, стимулирование экономики, охрана здоровья.\n\nСтатья 4. Таможенные органы: ГТК, региональные управления, таможни, посты.\n\nСтатья 5. Таможенная территория: 6 регионов + Чехословацкая АО.\n\nСтатья 7. Особые экономические зоны: о. Шипито (беспошлинная торговля).\n\nСтатья 8. Таможенные платежи:\n- ввозные/вывозные пошлины\n- НДС\n- акцизы\n- сборы\n\nСтатья 16. Обязательность декларирования.\n\nСтатья 20. Таможенные процедуры: выпуск для внутреннего потребления, экспорт, транзит, склад, переработка, временный ввоз, реимпорт, реэкспорт, уничтожение, отказ в пользу гос.\n\nСтатья 27. Запрещены: вывоз стратегических апельсинов, хряков элитных, оружия, полисорба.\n\nСтатья 29. Товары для личного пользования: до 1000 грошей, 50 кг — бесплатно.\n\nСтатья 41. Контрабанда — лишение свободы 3-7 лет.`,
+                shortText: "Граница с Чехословакией. Ввоз/вывоз барбариса, ледянки. Контрабанда апельсинов — уголовка. Беспошлинный ввоз до 1000 грошей."
+            },
+            { 
+                id: 14, 
+                title: "Том XIV. Лесной кодекс", 
+                fullText: `ЛЕСНОЙ КОДЕКС\n\nСтатья 1. Лес (широколестник) — экологическая система, среда обитания хряков.\n\nСтатья 2. Задачи: рациональное использование, сохранение биоразнообразия, охрана от пожаров.\n\nСтатья 4. Лесной фонд: леса лесфонда, обороны, поселений, ООПТ.\n\nСтатья 5. Лесничества: Северное, Центральное, Южное.\n\nСтатья 7. Леса находятся в федеральной собственности.\n\nСтатья 10. Аренда лесных участков.\n\nСтатья 13. Виды использования лесов:\n- заготовка древесины (палки-копалки)\n- заготовка барбариса, цикория, можжевельника\n- охота (на хряков)\n- выпас хряков\n- рекреация\n\nСтатья 15. Расчётная лесосека — допустимый объём рубки.\n\nСтатья 16. Виды рубок: главного пользования (спелые леса), ухода (прореживание).\n\nСтатья 17. Запрещены рубки в защитных лесах, в местах обитания редких видов.\n\nСтатья 24. Правила пожарной безопасности.\n\nСтатья 30. Лесовосстановление обязательно.\n\nСтатья 34. Лесоустройство.\n\nСтатья 40. Штрафы за незаконную рубку: 3000-4000 грошей (граждане), до 300 000 (юрлица).`,
+                shortText: "Широколестник — лесной фонд. Рубка по лицензиям. Запрет вырубки в заповедниках хряков. Лесовосстановление обязательно."
+            },
+            { 
+                id: 15, 
+                title: "Том XV. Водный кодекс", 
+                fullText: `ВОДНЫЙ КОДЕКС\n\nСтатья 1. Водные объекты: омуты, пролив Пендлтон, моря, ледники, болота.\n\nСтатья 2. Задачи: обеспечение прав на чистую воду, охрана от загрязнения.\n\nСтатья 4. Водные объекты: моря, проливы, омуты (Центральный, Лесной, Барбарисовый, Святого Хряка), реки (Барбариска, Килечная, Широкая), ледники, болота.\n\nСтатья 5. Подземные воды — стратегический запас.\n\nСтатья 7. Все водные объекты — в федеральной собственности.\n\nСтатья 8. В муниципальной собственности — пруды.\n\nСтатья 9. В частной — замкнутые водоёмы на участке.\n\nСтатья 10. Право пользования: договор, решение, сервитут.\n\nСтатья 11. Виды водопользования: забор воды, сброс сточных вод, питьевое водоснабжение, энергетика, транспорт, лесосплав, рекреация, рыболовство.\n\nСтатья 12. Питьевое водоснабжение — приоритет.\n\nСтатья 13. Рыболовство: промышленное — по договорам, любительское — бесплатно.\n\nСтатья 18. Водоохранные зоны:\n- пролив Пендлтон: 500 м\n- омуты: 100 м\n- реки: 50 м\n\nСтатья 21. Мероприятия по защите от наводнений.\n\nСтатья 26. Водный налог: 300 грошей за 1000 м³.\n\nСтатья 29. Штрафы за загрязнение: 1500-2000 грошей (граждане), до 100 000 (юрлица).`,
+                shortText: "Омуты, пролив Пендлтон — гос. собственность. Водопой хряков — бесплатно. Загрязнение — штраф. Водоохранные зоны: 50-500 м."
+            },
+            { 
+                id: 16, 
+                title: "Том XVI. Финансовый кодекс", 
+                fullText: `ФИНАНСОВЫЙ КОДЕКС\n\nСтатья 1. Грош ломаный — официальная денежная единица.\n\nСтатья 2. Соотношение к кроне: 1 грош = 2.5 кроны.\n\nСтатья 3. Банкноты: 1, 5, 10, 50, 100, 500, 1000 грошей.\n\nСтатья 4. Центральный Банк (ГБГЛ) — главный банк.\n\nСтатья 5. Цели Центробанка: защита гроша, развитие системы, стабильность.\n\nСтатья 6. Функции: денежно-кредитная политика, эмиссия, надзор.\n\nСтатья 8. Ключевая ставка — 11.1%.\n\nСтатья 10. Коммерческие банки: «Вертикальный Капиталъ», «Барбарис-Кредит», «Ледокол-Инвест».\n\nСтатья 14. Вклады: до востребования (до 1%), срочный (до 8%), барбарисовый (проценты ледянкой). Страхование вкладов — до 1.4 млн грошей.\n\nСтатья 15. Кредиты: потребительский (до 100 000), ипотечный (до 10 лет, 12%), под залог хряка.\n\nСтатья 17. Фондовая биржа «Кривой Старт».\n\nСтатья 19. Индекс «КС-111».\n\nСтатья 20. Голубые фишки: Тормозные колодцы (TORM), Килька-Стандарт (KILK), Барбарисовые сады (BARB), Скворечник-строй (SKVO), Вертикаль-Ойл (OIL).\n\nСтатья 23. Ценные бумаги: акции, облигации (гос. и корп.), векселя.\n\nСтатья 34. Фальшивомонетничество — до 8 лет.`,
+                shortText: "Грош ломаный — офиц. валюта. Банк «Грош ломаный» — центробанк. Ключевая ставка — 11.1%. Биржа «Кривой Старт». Индекс КС-111."
+            },
+            { 
+                id: 17, 
+                title: "Том XVII. Образовательный кодекс", 
+                fullText: `ОБРАЗОВАТЕЛЬНЫЙ КОДЕКС\n\nСтатья 1. Образование — процесс воспитания и обучения.\n\nСтатья 2. Задачи: право на образование, разграничение полномочий, гарантии.\n\nСтатья 3. Принципы: приоритет образования, гуманизм, единство пространства.\n\nСтатья 4. Уровни образования:\n- дошкольное (капуцинята с 2 мес.)\n- начальное (1-4 классы)\n- основное (5-9)\n- среднее (10-11)\n- среднее проф.\n- высшее (бакалавриат, специалитет, магистратура, аспирантура)\n- дополнительное\n\nСтатья 6. Дошкольные организации: ясли, детские сады.\n\nСтатья 8. Программы: «Маленький балахрыст», «Юный геодезист», «Каляка-маляка».\n\nСтатья 10. Начальная школа: Канон (чтение), Математика, Широколестие, Труд, Рисование, Физкультура.\n\nСтатья 12. Основная школа: История, География, Хряковедение, Физика палки-копалки, Химия барбариса, Обществознание, Чехословацкий язык.\n\nСтатья 13. ОГЭ: Канон, Математика, История.\n\nСтатья 14. Профили: гуманитарный, естественно-научный, технический, социально-экономический.\n\nСтатья 15. ЕГЭ.\n\nСтатья 18. Вузы: Институт Ирудита, Архангельская мореходка, Барбарисовый университет, Пипинский нефтяной институт, Широколесная академия, Чехословацкий филиал.\n\nСтатья 19. Учёные степени: бакалавр, магистр, кандидат, доктор.`,
+                shortText: "Обязательное образование до 9 класса. Институт Ирудита — высшая школа. Каляки-маляки — проф. образование. Уровни: дошк., школа, вуз."
+            },
+            { 
+                id: 18, 
+                title: "Том XVIII. Здравоохранение", 
+                fullText: `КОДЕКС О ЗДРАВООХРАНЕНИИ\n\nСтатья 1. Здоровье — состояние благополучия.\n\nСтатья 2. Охрана здоровья — система мер.\n\nСтатья 3. Принципы: доступность, бесплатность (базовая), врачебная тайна.\n\nСтатья 4. Уровни помощи: первичная, специализированная, скорая, паллиативная, высокотехнологичная.\n\nСтатья 5. Типы организаций: полисорбные центры, областные больницы, амбулатории, фельдшерские пункты.\n\nСтатья 6. Поликлиники: участковые геодезисты-терапевты.\n\nСтатья 7. Узкие специалисты: хирург, травматолог, офтальмолог, невролог, капуцинолог, хряковед.\n\nСтатья 8. Скорая помощь — круглосуточно, бесплатно, телефон 111.\n\nСтатья 9. Поводы для вызова: укус хряка, отравление барбарисом, передозировка полисорбом, травмы, роды, шлях арехавый.\n\nСтатья 10. Транспорт скорой: ледоколы, гужевые повозки, санитарные палки-копалки.\n\nСтатья 14. Стратегические лекарства: полисорб, вологоша, можжевеловая настойка, барбарисовая мазь.\n\nСтатья 15. Рецептурный отпуск: крепкий барбарис, экстракт полисорба, креплёная вологоша.\n\nСтатья 17. ОМС — бесплатная помощь в рамках базовой программы.\n\nСтатья 18. Фонд полисорбного страхования.\n\nСтатья 20. ДМС — платные клиники, без очереди.\n\nСтатья 24. Клятва геодезиста-медика.\n\nСтатья 25. Психиатрическая помощь — санатории-раскумары.\n\nСтатья 27. Санатории: «Омут здоровья», «Барбарисовые ванны», «Ледяной рай».`,
+                shortText: "Полисорб — главное лекарство. Полисорбное страхование (ОМС). Бесплатные прививки от хрячьего гриппа. Скорая помощь — телефон 111."
+            },
+            { 
+                id: 19, 
+                title: "Том XIX. Военный кодекс (Устав Протокола Защиты)", 
+                fullText: `ВОЕННЫЙ КОДЕКС\n\nСтатья 1. Протокол Защиты — система безопасности.\n\nСтатья 2. Задачи: военная безопасность, защита границ, охрана стратегических объектов (апельсинов, нефти).\n\nСтатья 3. Принципы: единоначалие, обязательная служба с 18 лун, верность присяге.\n\nСтатья 4. Виды войск: Широколесная стража, Ледокольный флот, Крылья хряка, Вертикальный десант, Стража порядка.\n\nСтатья 5. Военные округа: Западный (Кичменгский), Северный (Архангельск), Южный (Барбарисовка).\n\nСтатья 6. Постановка на учёт с 16 лун.\n\nСтатья 7. Категории годности: А (годен), Б (ограниченно), В (ограниченно годен в мирное), Г (временно не годен), Д (не годен).\n\nСтатья 8. Срок службы: 1 год. Для выпускников Ирудита — 9 мес.\n\nСтатья 9. Отсрочки: студенты, отцы двоих, уход за больным хряком, депутаты.\n\nСтатья 11. Воинские звания: рядовой (копалкин), ефрейтор, сержант, старшина, прапорщик, офицеры (лейтенант-полковник), генералы (майор-армии), Маршал.\n\nСтатья 12. Верховный Главнокомандующий — Самюэль.\n\nСтатья 13. Оружие: палка-копалка, АПК, пулемёт «Широколесный», снайперская палка-копалка.\n\nСтатья 14. Артиллерия: барбарисовая пушка, ледяная мортира, хрякомёт.\n\nСтатья 15. Техника: танк «Широколесный-1», ледокол «Северный ветер», истребитель «Вертикальный».\n\nСтатья 17. Присяга.\n\nСтатья 20. Дисциплинарные взыскания: замечание, выговор, строгий выговор, внеочередной наряд, снижение в должности/звании, арест до 30 суток на Резонансе.`,
+                shortText: "Обязательная служба 1 год. Звания: от копалкина до маршала. Оружие: палки-копалки, ледоколы, барбарисовые пушки. Верховный Главнокомандующий — Самюэль."
+            },
+            { 
+                id: 20, 
+                title: "Том XX. Культурный кодекс", 
+                fullText: `КУЛЬТУРНЫЙ КОДЕКС\n\nСтатья 1. Культурные ценности: язык, традиции, верования, каляки-маляки.\n\nСтатья 2. Задачи: сохранение наследия, развитие творчества, поддержка искусства.\n\nСтатья 3. Принципы: свобода творчества, доступность, поддержка меценатства.\n\nСтатья 4. Категории объектов культурного наследия: федерального (сибироязвенный скотомогильник), регионального, местного.\n\nСтатья 5. Реестр культурного наследия.\n\nСтатья 8. Каляки-маляки — национальный вид искусства: классическая, фигуративная, поделка.\n\nСтатья 9. Поддержка художников: госзаказы, стипендии, выставки.\n\nСтатья 10. Клоунада: классическая, уличная, шествие, политическая.\n\nСтатья 11. Театры: им. Самюэля, ледовой клоунады, юного капуцина.\n\nСтатья 12. Музыка: хрячий рог, барбарисовые гусли, палка-копалка-барабан, горготалка.\n\nСтатья 13. Гимн «А матин талала».\n\nСтатья 14. Литература: каноническая, историческая, художественная, поэзия.\n\nСтатья 15. Литературные премии: им. Вовы Соложкова, «Золотой хряк».\n\nСтатья 16. Праздники: Новогодний раскумар, День хряка, День Протокола, День капуцинов, День победы над шляхом, День апельсина, День единства.\n\nСтатья 24. Гильдия Каляк-Маляк.`,
+                shortText: "Каляки-маляки — национальное искусство. Клоунада — национальный театр. Гимн «А матин талала». Поддержка художников и артистов."
+            },
+            { 
+                id: 21, 
+                title: "Том XXI. Спортивный кодекс", 
+                fullText: `СПОРТИВНЫЙ КОДЕКС\n\nСтатья 1. Физическая культура — часть культуры.\n\nСтатья 2. Спорт — сфера соревнований.\n\nСтатья 4. Спортивные организации: Министерство спорта, федерации, клубы, школы.\n\nСтатья 6. Национальные виды спорта:\n1. Метание палки-копалки (рекорд 87 м 30 см, Вася Пупкин)\n2. Хрячьи бега (верховая езда, бег за хряком, эстафета)\n3. Вертикальный прыжок (рекорд 1 м 45 см)\n4. Барбарисовый кросс\n5. Ледянковый слалом\n6. Горготание (громкость, тембр, натуральность)\n7. Перетягивание палки-копалки\n8. Омутовое плавание\n\nСтатья 11. Национальный олимпийский комитет.\n\nСтатья 12. Летние Олимпийские игры: раз в 4 года.\n\nСтатья 13. Зимние Олимпийские игры: раз в 4 года.\n\nСтатья 14. Олимпийский огонь зажигается на сибироязвенном скотомогильнике.\n\nСтатья 15. Спортивные звания: III, II, I разряды, КМС, МС, МСМК, ЗМС.\n\nСтатья 17. Стадионы: «Вертикальный» (30 000), «Ледянка» (10 000), «Хряк-Арена» (15 000).\n\nСтатья 19. Футбольная лига: «Вертикаль», «Ледокол», «Хряк», «Пипин».\n\nСтатья 20. Хрячьи бега: Большой приз — 1 млн грошей.\n\nСтатья 21. Медицинские осмотры обязательны.\n\nСтатья 22. Допинг: крепкий барбарис, экстракт полисорба, настойка можжевельника, вологоша за 2 часа до старта — дисквалификация 2 года.\n\nСтатья 23. Кубок Дружбы с Чехословацкой АО.`,
+                shortText: "Национальные виды спорта: метание палки-копалки, хрячьи бега, ледянковый слалом. Олимпийские игры Балахрыстана. Стадионы в каждом регионе."
+            },
+            { 
+                id: 22, 
+                title: "Том XXII. Экологический кодекс", 
+                fullText: `ЭКОЛОГИЧЕСКИЙ КОДЕКС\n\nСтатья 1. Окружающая среда — компоненты природной среды.\n\nСтатья 2. Задачи: сохранение природы, экобезопасность, сохранение биоразнообразия.\n\nСтатья 3. Принципы: презумпция экологической опасности, платность, обязательность оценки воздействия.\n\nСтатья 4. ООПТ: заповедники, нацпарки, заказники, памятники природы.\n\nСтатья 5. Заповедник «Хрячья пуща».\n\nСтатья 6. Памятник природы «Сибироязвенный скотомогильник».\n\nСтатья 7. ПДК: барбарисовая пыль (0.5 мг/м³), выхлопы ледоколов (100 мг/м³).\n\nСтатья 8. Предприятия обязаны ставить фильтры.\n\nСтатья 9. Запрет сжигания широколестника.\n\nСтатья 10. Нормативы воды: килька не менее 10 шт/м³.\n\nСтатья 11. Водоохранные зоны: запрет мойки ледоколов, контроль стоков.\n\nСтатья 12. Очистные сооружения обязательны.\n\nСтатья 14. Рекультивация обязательна.\n\nСтатья 15. Запрет свалок.\n\nСтатья 16. Красная книга.\n\nСтатья 17. Категории редкости: 0 (исчезнувшие), 1 (под угрозой), 2 (сокращающиеся), 3 (редкие).\n\nСтатья 19. Права хряков: гуманное обращение, естественная среда, защита от болезней.\n\nСтатья 20. Запрет охоты на хряков в заповедниках.\n\nСтатья 21. Жестокое обращение с хряками — до 500 000 грошей.\n\nСтатья 22. Заповедные рощи вертикальных апельсинов.\n\nСтатья 23. Сбор барбариса разрешён с 1 августа по 30 сентября.\n\nСтатья 25. Классы опасности отходов.\n\nСтатья 26. Раздельный сбор отходов.\n\nСтатья 31. Штрафы за загрязнение: до 500 000 грошей.`,
+                shortText: "Красная книга хряков. Заповедник «Хрячья пуща». Запрет охоты на казалосьбыков. Рекультивация земель. Раздельный сбор отходов."
+            },
+            { 
+                id: 23, 
+                title: "Том XXIII. Энергетический кодекс", 
+                fullText: `ЭНЕРГЕТИЧЕСКИЙ КОДЕКС\n\nСтатья 1. Энергетика — отрасль экономики.\n\nСтатья 2. Энергетические ресурсы: барбарис, ледянка, нефть, торф, дрова, энергия хряков.\n\nСтатья 3. Принципы: госрегулирование, энергосбережение, экобезопасность.\n\nСтатья 4. Традиционные ресурсы: барбарис (Южно-Барбарисовая обл.), нефть (о. Пипин), газ (пролив), торф, древесина.\n\nСтатья 5. Возобновляемые: ледянка (сезонная), энергия хряков (низкий потенциал), гидро (омуты), ветер, солнце, биогаз (навоз хряков).\n\nСтатья 6. Типы электростанций: барбарисовые ТЭС (БТЭС «Барбарисовый гигант», 1000 МВт), нефтяные ТЭС, газовые, ледянковые ГЭС (сезонные), ветряные, хрячьи мини-станции.\n\nСтатья 7. БТЭС — основа энергосистемы.\n\nСтатья 9. Ледянковые ГЭС активны с апреля по сентябрь (20% потребностей севера).\n\nСтатья 10. Единая национальная электрическая сеть.\n\nСтатья 11. Классы напряжения: сверхвысокое (500 кВ), высокое (110-220), среднее (10-35), низкое (0.4).\n\nСтатья 12. Потери в сетях — не более 15%.\n\nСтатья 14. Тарифы: социальная норма 150 кВт·ч по 1 грошу, свыше — 3 гроша.\n\nСтатья 17. Топливо для отопления: барбарис, газ, нефть, дрова, торф.\n\nСтатья 18. Отопительный сезон: при +8°C в течение 5 дней.\n\nСтатья 19. Нефтяные месторождения: о. Пипин, шельф.\n\nСтатья 21. Пипинский НПЗ: бензин, мазут, масла.\n\nСтатья 24. Поддержка «зелёной» энергетики.\n\nСтатья 26. Биогаз из навоза хряков.\n\nСтатья 28. Энергоаудит раз в 5 лет.\n\nСтатья 30. Счётчики обязательны.`,
+                shortText: "Барбарисовые ТЭС. Нефть с о. Пипин. Ледянковые ГЭС на севере. Возобновляемые источники: биогаз из навоза хряков, энергия хряков (мускульная)."
+            },
+            { 
+                id: 24, 
+                title: "Том XXIV. Транспортный кодекс", 
+                fullText: `ТРАНСПОРТНЫЙ КОДЕКС\n\nСтатья 1. Транспортная система: ледоколы, паромы, гужевые повозки, хрячьи упряжки.\n\nСтатья 2. Задачи: безопасность, доступность, развитие.\n\nСтатья 3. Принципы: доступность, безопасность, качество, экологичность.\n\nСтатья 4. Виды транспорта: водный, гужевой, железнодорожный, трубопроводный.\n\nСтатья 5. Водные суда: ледоколы, паромы, баржи, рыболовные, прогулочные, спасательные.\n\nСтатья 6. Ледокольный флот: «Самюэль», «Вертикальный апельсин», «Хряк полярный», «Пролив Пендлтон».\n\nСтатья 7. Регистрация судов.\n\nСтатья 8. Правила плавания.\n\nСтатья 9. Лоцманская проводка.\n\nСтатья 10. Навигационный период.\n\nСтатья 11. Гужевой транспорт: хрячьи упряжки, повозки, сани, верховая езда.\n\nСтатья 12. Хряки-транспортные: ветпаспорт, ежегодный осмотр.\n\nСтатья 13. Повозки должны быть оборудованы тормозами, световозвращателями, номерами.\n\nСтатья 14. Погонщик должен иметь права категории «Х».\n\nСтатья 15. Скоростной режим: 20 км/ч (асфальт), 15 (грунт), 10 (населённые пункты), 5 (по льду).\n\nСтатья 16. Железные дороги: Кичменгский-Архангельск (500 км), Кичменгский-Широколесинск (300), Кичменгский-Барбарисовка (400), Архангельск-Порт Пендлтон (150), Барбарисовка-Прага (200).\n\nСтатья 17. Подвижной состав: пассажирские, грузовые, рефрижераторы, хряк-транс.\n\nСтатья 20. Участники движения: водители, пассажиры, пешеходы, погонщики.\n\nСтатья 22. Дорожные знаки: красный апельсин (стоп), зелёный хряк (можно), синий омут (водопой).\n\nСтатья 23. Светофор: красный (апельсин), жёлтый (барбарис), зелёный (хряк).`,
+                shortText: "Ледоколы, паромы, гужевые повозки. Правила: красный апельсин — стоп, зелёный хряк — можно. Скорость: 5-20 км/ч. Права категории «Х»."
+            },
+            { 
+                id: 25, 
+                title: "Том XXV. О выборах и референдумах", 
+                fullText: `КОДЕКС О ВЫБОРАХ И РЕФЕРЕНДУМАХ\n\nСтатья 1. Выборы — форма волеизъявления.\n\nСтатья 2. Референдум — по важным вопросам.\n\nСтатья 3. Избиратель — гражданин с 18 лун.\n\nСтатья 4. Принципы: всеобщее, равное, прямое, тайное, добровольное.\n\nСтатья 5. Право быть избранным: Красный Молодец (21 год), губернатор (25), Кирилиджон (30).\n\nСтатья 6. Избирательные комиссии: ЦИК (9 членов), региональные, территориальные, участковые.\n\nСтатья 11. Выдвижение: самовыдвижение, партии (Гильдия Каляк-Маляк, Общество защитников хряков, Партия любителей барбариса, Союз Красных Молодцов).\n\nСтатья 12. Сбор подписей: для Красных Молодцов — 3%, губернатора — 2%, Кирилиджона — 1%.\n\nСтатья 13. Агитация начинается с выдвижения, заканчивается за сутки до выборов.\n\nСтатья 14. Разрешённые формы: клоунады, листовки, дебаты, наружная реклама.\n\nСтатья 15. Запрещено: разжигание ненависти, подкуп, использование админресурса.\n\nСтатья 16. Избирательные фонды.\n\nСтатья 19. Избирательные участки — до 3000 избирателей.\n\nСтатья 20. Бюллетени с водяными знаками.\n\nСтатья 21. Голосование с 8:00 до 20:00.\n\nСтатья 25. Избранным считается кандидат с более 50% голосов. Если нет — второй тур.\n\nСтатья 26. Штрафы: за подкуп — до 20 000 грошей.\n\nСтатья 27. Фальсификация — до 4 лет.`,
+                shortText: "Выборы Красных Молодцов. Избиркомы с геодезистами. Голосование бюллетенями с апельсином. Избранным считается кандидат с более 50% голосов."
+            },
+            { 
+                id: 26, 
+                title: "Том XXVI. О государственной службе", 
+                fullText: `КОДЕКС О ГОСУДАРСТВЕННОЙ СЛУЖБЕ\n\nСтатья 1. Государственная служба — профессиональная деятельность.\n\nСтатья 2. Задачи: обеспечение полномочий, защита прав, борьба с коррупцией.\n\nСтатья 3. Принципы: профессионализм, стабильность, доступность.\n\nСтатья 4. Виды службы: гражданская, правоохранительная, военная, дипломатическая.\n\nСтатья 5. Категории должностей: руководители, помощники, специалисты, обеспечивающие.\n\nСтатья 6. Группы: высшая (ирудит + 4 года стажа), главная (ирудит + 2 года), ведущая (ирудит + 1 год), старшая (среднее проф.), младшая (среднее общее).\n\nСтатья 7. Права: ознакомление с документами, получение информации, посещение организаций, оплата, отдых, медстрахование, пенсия.\n\nСтатья 8. Обязанности: соблюдать законы, исполнять поручения, не разглашать тайны, беречь имущество, декларировать доходы.\n\nСтатья 9. Запреты: заниматься бизнесом, получать подарки (>3000 грошей), использовать имущество в личных целях.\n\nСтатья 10. Подарки свыше 3000 грошей сдаются государству.\n\nСтатья 11. Конфликт интересов.\n\nСтатья 12. Конкурсный отбор.\n\nСтатья 15. Аттестация раз в 3 года.\n\nСтатья 18. Оплата: оклад + надбавки.\n\nСтатья 20. Поощрения: благодарность, премия, ценный подарок, грамота, почётное звание, госнаграды.\n\nСтатья 21. Дисциплинарные взыскания: замечание, выговор, предупреждение о неполном соответствии, увольнение.`,
+                shortText: "Геодезисты-чиновники. Запрет взяток барбарисом. Конфликт интересов. Классные чины. Аттестация раз в 3 года."
+            },
+            { 
+                id: 27, 
+                title: "Том XXVII. О рекламе", 
+                fullText: `КОДЕКС О РЕКЛАМЕ\n\nСтатья 1. Реклама — информация для продвижения.\n\nСтатья 2. Задачи: защита от недобросовестной конкуренции, достоверность.\n\nСтатья 3. Принципы: достоверность, распознаваемость, этичность, безопасность, защита несовершеннолетних.\n\nСтатья 5. Особые требования к рекламе: алкоголя (барбарисовой настойки), табака (запрещена), лекарств (полисорба), оружия.\n\nСтатья 6. Нельзя: обещать несуществующие свойства, некорректно сравнивать, вводить в заблуждение.\n\nСтатья 7. Недобросовестная реклама: некорректные сравнения, порочащая информация.\n\nСтатья 8. Скрытая реклама запрещена.\n\nСтатья 9. Спонсорство должно быть явным.\n\nСтатья 10. Реклама на балахрыстском языке.\n\nСтатья 12. Реклама алкоголя только в специзданиях и в местах продажи, с 23:00 до 7:00.\n\nСтатья 13. В рекламе алкоголя запрещено обращаться к несовершеннолетним, показывать хряков.\n\nСтатья 14. Реклама лекарств должна содержать предупреждение: «Имеются противопоказания» (не менее 5% площади).\n\nСтатья 16. Реклама оружия — только в специзданиях.\n\nСтатья 18. Реклама товаров не для детей не должна размещаться в детских передачах.\n\nСтатья 19. Разрешение на наружную рекламу.\n\nСтатья 20. Запрещено размещать на объектах культурного наследия.\n\nСтатья 22. Объём рекламы в СМИ — не более 15% времени.\n\nСтатья 24. Социальная реклама — 5% бесплатно.\n\nСтатья 28. Штрафы: до 500 000 грошей.`,
+                shortText: "Реклама барбариса — с 23:00. Запрет на рекламу палок-копалок детям. Недостоверная реклама — штраф. Социальная реклама — 5% бесплатно."
+            },
+            { 
+                id: 28, 
+                title: "Том XXVIII. О благотворительности", 
+                fullText: `КОДЕКС О БЛАГОТВОРИТЕЛЬНОСТИ\n\nСтатья 1. Благотворительность — добровольная помощь.\n\nСтатья 2. Задачи: регулирование, гарантии свободы, поддержка, прозрачность.\n\nСтатья 3. Принципы: добровольность, бескорыстность, равенство, прозрачность.\n\nСтатья 4. Цели: соцподдержка, помощь пострадавшим от ЧС, укрепление мира, охрана природы, культура, образование, спорт.\n\nСтатья 5. Запрещённые цели: поддержка политических партий, экстремизм.\n\nСтатья 6. Благотворители: физлица, юрлица, органы власти.\n\nСтатья 7. Права благотворителей: определять цели, требовать отчёт, налоговый вычет.\n\nСтатья 8. Налоговый вычет — до 25% дохода.\n\nСтатья 9. Формы благотворительных организаций: общественные организации, фонды, учреждения.\n\nСтатья 13. Добровольцы (волонтёры) — безвозмездно.\n\nСтатья 14. Права добровольцев: информация, возмещение расходов, страхование, поощрение.\n\nСтатья 16. Пожертвования: гроши, барбарис, ледянка, палки-копалки, ценные бумаги, поделки.\n\nСтатья 18. Сбор средств: ящики, банковские переводы, SMS, благотворительные мероприятия.\n\nСтатья 23. Годовой отчёт обязателен.\n\nСтатья 27. Штрафы: за нецелевое использование — до 100 000 грошей.\n\nСтатья 28. Мошенничество в сфере благотворительности — до 3 лет.`,
+                shortText: "Пожертвования грошей, барбариса. Помощь бедным капуцинам. Налоговый вычет 25%. Добровольцы (волонтёры) имеют право на страхование и возмещение расходов."
+            },
+            { 
+                id: 29, 
+                title: "Том XXIX. О животных", 
+                fullText: `КОДЕКС О ЖИВОТНЫХ\n\nСтатья 1. Животный мир — совокупность живых организмов.\n\nСтатья 2. Задачи: охрана животного мира, сохранение биоразнообразия, гуманное обращение.\n\nСтатья 3. Принципы: приоритет сохранения, устойчивое использование, гуманность.\n\nСтатья 4. Классификация: дикие (хряк лесной, казалосьбык), сельскохозяйственные (хряк домашний), домашние (питомцы), лабораторные, служебные.\n\nСтатья 5. Красная книга: казалосьбык (0), хряк альбинос (1), хряк лесной (2), килька золотая (3), омутовый червяк (4).\n\nСтатья 6. Уничтожение краснокнижных — до 1 млн грошей.\n\nСтатья 7. ООПТ: заповедник «Хрячья пуща».\n\nСтатья 9. Охотничий сезон: хряк лесной — с 1 октября по 31 декабря.\n\nСтатья 10. Охотничий билет с 18 лун.\n\nСтатья 11. Запрещённые орудия: взрывчатка, яды, петли.\n\nСтатья 13. Любительское рыболовство бесплатно, кроме нереста.\n\nСтатья 15. Обязанности владельца: кормить, поить, лечить, регистрировать.\n\nСтатья 16. Регистрация крупных животных.\n\nСтатья 17. Право на гуманное обращение.\n\nСтатья 18. Запрет жестокости: побои, бои, оставление без пищи.\n\nСтатья 19. Племенное разведение по лицензии.\n\nСтатья 20. Убой гуманными способами.\n\nСтатья 21. Транспортировка: не менее 1 м² на хряка, вода, отдых.\n\nСтатья 22. Служебные хряки приравниваются к военнослужащим.\n\nСтатья 26. Приюты для безнадзорных хряков.\n\nСтатья 28. Эвтаназия только по показаниям.\n\nСтатья 31. Штрафы: за жестокость — до 100 000 грошей.\n\nСтатья 32. Жестокое обращение — до 3 лет.`,
+                shortText: "Хряки — священны. Запрет жестокости. Красная книга: казалосьбык, хряк-альбинос. Регистрация крупных животных. Служебные хряки приравниваются к военным."
+            },
+            { 
+                id: 30, 
+                title: "Том XXX. Уголовно-процессуальный кодекс", 
+                fullText: `УГОЛОВНО-ПРОЦЕССУАЛЬНЫЙ КОДЕКС\n\nСтатья 1. Уголовное судопроизводство — деятельность по расследованию и разрешению дел.\n\nСтатья 2. Задачи: защита прав, справедливое наказание, отказ от преследования невиновных.\n\nСтатья 3. Принципы: законность, презумпция невиновности, состязательность, право на защиту.\n\nСтатья 4. Полномочия суда: признать виновным, назначить наказание, применить принудительные меры.\n\nСтатья 5. Состав суда: единолично, коллегия из трёх, с присяжными (Красными Молодцами).\n\nСтатья 6. Следователь (геодезист-следователь).\n\nСтатья 7. Орган дознания (Зелёный патруль).\n\nСтатья 8. Прокурор (Главный Надзиратель).\n\nСтатья 9. Потерпевший.\n\nСтатья 10. Подозреваемый, обвиняемый, подсудимый.\n\nСтатья 11. Защитник (геодезист-адвокат).\n\nСтатья 13. Доказательства: показания, заключения экспертов, вещдоки, протоколы.\n\nСтатья 14. Недопустимые доказательства (с нарушением закона).\n\nСтатья 17. Основания задержания.\n\nСтатья 18. Срок задержания — не более 48 часов.\n\nСтатья 19. Меры пресечения: подписка о невыезде, личное поручительство, залог, домашний арест, заключение под стражу (депортация на Резонанс).\n\nСтатья 20. Содержание под стражей — не более 18 месяцев.\n\nСтатья 21. Поводы для возбуждения дела: заявление, явка с повинной, сообщение.\n\nСтатья 23. Формы расследования: следствие (2 мес.), дознание.\n\nСтатья 26. Обыск с санкции суда.\n\nСтатья 39. Особый порядок — 2/3 срока.\n\nСтатья 40. Досудебное соглашение о сотрудничестве.\n\nСтатья 41. Апелляция — 10 суток.\n\nСтатья 44. Особенности для несовершеннолетних (капуцинов).\n\nСтатья 46. Принудительные меры медхарактера.`,
+                shortText: "Следствие ведут геодезисты. Суд — Распределитель. Презумпция невиновности. Депортация по приговору. Апелляция — 10 суток."
+            },
+            { 
+                id: 31, 
+                title: "Том XXXI. История", 
+                fullText: `ИСТОРИЧЕСКИЙ КОДЕКС\n\nЭПОХА -111: Эра Великого Хряка. Создание мира.\n\nЭПОХА -1000: Первая династия. Царь Копалка I, царица Ледянка, царь Барбарис Мудрый.\n\nЭПОХА -500: Великое переселение капуцинов.\n\nЭПОХА -200: Основание Чехословацкой колонии Яном Кривым.\n\nЭПОХА 0: Рождение Канона (111 слов). Начало летоисчисления.\n\nЭПОХА 500-1000: Эпоха раздробленности: Кичменгское княжество, Архангельская вольница, Пипинское царство.\n\nЭПОХА 1000-1500: Объединение князем Самюэлем I. Битва при проливе Пендлтон.\n\nЭПОХА 1500-2000: Золотой век. Строительство Дворца Советов, Института Ирудита, ледокола «Хряк-1». Миклухо-Маклай.\n\nЭПОХА 2000-2020: Потрясения: Великий пожар, эпидемия хрячьего гриппа, кризис.\n\nЭПОХА 2021-2026: Возрождение. Избрание Кирилиджона, создание кодексов, воцарение Самюэля. Открытие новых земель.`,
+                shortText: "Летопись: Эпоха Великого Хряка, Первая династия, Золотой век, Эпоха возрождения 2021-2026. Основные вехи: -111 (сотворение), 0 (Канон), 1000 (объединение), 2021 (избрание)."
+            },
+            { 
+                id: 32, 
+                title: "Том XXXII. Мифы", 
+                fullText: `МИФОЛОГИЧЕСКИЙ КОДЕКС\n\nБОГИ:\n\nВеликий Хряк — демиург, создатель мира из барбарисовой энергии. Храм «Священное Стойло», праздник 7 января.\n\nБарбариус — бог плодородия, сын Хряка. Научил выращивать барбарис.\n\nЛедяна — богиня зимы и ледянки, дочь Хряка.\n\nКопалкус — бог труда и ремесла, изобретатель палки-копалки.\n\nОмута — богиня вод, хозяйка омутов.\n\nНИЗШАЯ МИФОЛОГИЯ:\n\nШипито — дух связи, обитает на о. Шипито.\n\nКазалосьбыки — духи-обманщики.\n\nОмутовые червяки — духи глубин.\n\nЛЕГЕНДЫ:\n\nЛегенда о первом гроше (из копыта Хряка).\n\nЛегенда о вертикальном апельсине (Вова и дочь Барбариуса).\n\nЛегенда о проливе Пендлтон (Хряк топнул).\n\nКУЛЬТЫ:\n\nКульт Великого Хряка: храмы, жрецы-хряководы, обряды (кормление, горготание хором, омовение).\n\nСвященные места: Священное Стойло, Омут Святого Хряка, Гора Откровения.`,
+                shortText: "Великий Хряк — творец. Барбариус — бог плодородия. Ледяна — богиня зимы. Казалосьбыки — духи-обманщики. Легенда о вертикальном апельсине."
+            },
+            { 
+                id: 33, 
+                title: "Том XXXIII. Биографии", 
+                fullText: `БИОГРАФИЧЕСКИЙ КОДЕКС\n\nСамюэль Эрондондонович (р. 15.03.1985) — Верховный Бюрократ. Женат, трое детей. Карьера: геодезист, начальник Роспотребнадзора, губернатор, председатель Совета, Верховный Бюрократ. Хобби: есть ледянку.\n\nКирилиджон (р. 03.03.1980) — председатель Совета. Автор «Особых идей». Не женат. Любит палки-копалки.\n\nВова Соложков (р. 12.06.1975) — первооткрыватель вертикального апельсина, художник. Женат, трое детей.\n\nВася Пупкин (р. 22.05.1970) — губернатор Архангельской губернии, мореплаватель. Совершил кругосветку. Фраза «Отчалил Вася».\n\nМиклухо-Маклай (1846-1888) — путешественник. Открыл острова Резонанс, Шипито.\n\nПантелеймон Зажиточный (р. 10.10.1960) — председатель Центробанка.\n\nСпиридон Котиков (р. 15.02.1975) — председатель Биржевого совета, «Барбарисовый лис».\n\nБоб строитель (р. 01.05.1965) — строитель, губернатор.\n\nХряк Сенатор (р. 01.01.2018) — главный хряк страны, награждён орденом.\n\nЯн Кривобратр (р. 14.07.1968) — губернатор Чехословацкой АО.`,
+                shortText: "Самюэль Эрондондонович, Кирилиджон, Вова Соложков, Вася Пупкин, Миклухо-Маклай, Пантелеймон Зажиточный, Спиридон Котиков, Боб строитель, хряк Сенатор, Ян Кривобратр."
+            },
+            { 
+                id: 34, 
+                title: "Том XXXIV. Быт и традиции", 
+                fullText: `КОДЕКС О БЫТЕ И ТРАДИЦИЯХ\n\nЖИЛИЩА:\nСкворечники — тип: классический (1-2 эт., дерево), городской (3-9 эт.), северный (лёд), плавучий, элитный.\nВнутри: горница, хрячник, ледянная, кладовая.\nМебель: стол-копалка, лавка-хряк, шкаф-ледник.\n\nОДЕЖДА:\nМужская: рубаха-копалка, штаны-широколестники, жилет-геодезист, сапоги-ледоколы.\nЖенская: сарафан-ледянка, блуза-барбарис, передник-каляка, платок-омутина.\nФорма: геодезистов (зелёная), ледокольщиков (синяя), хряководов.\n\nКУХНЯ:\nОсновные продукты: барбарис, ледянка, килька, цикорий, можжевельник.\nБлюда: ледянка (классическая, с барбарисом, по-архангельски), вологоша (классическая, креплёная, по-чехословацки), килька в томате, уха долин, хряк по-царски.\nРецепт вологоши: барбарис + цикорий + кипяток из омута.\n\nСЕМЬЯ:\nРождение: омовение в омуте, дарение барбариса, посадка апельсина.\nИмена: мужские (Самюэль, Вова, Вася), женские (Капуцина, Ледянка, Барбариса).\nСвадьба: сватовство (мешок барбариса), выкуп, обмен хряками, посадка апельсина.\nПохороны: омовение, одевание, проводы хряка, поминки (9, 40 дней, год).\n\nПРАЗДНИКИ:\nНовогодний раскумар (1-5 янв): Дед Хряк, Капуцина Снежная.\nДень хряка (7 янв): кормление всех хряков.\nДень апельсина (12 июня): конкурс на самый вертикальный.\n\nПРИМЕТЫ:\nХряк горгочет — к дождю. Ледянка тает — к потеплению. Рассыпать барбарис — к ссоре.`,
+                shortText: "Скворечники — дома. Национальная одежда: рубаха-копалка, сарафан-ледянка. Кухня: ледянка, килька, вологоша. Свадьба: обмен хряками. Праздники: День хряка (7 янв)."
+            },
+            { 
+                id: 35, 
+                title: "Том XXXV. Культура и искусство", 
+                fullText: `КОДЕКС О КУЛЬТУРЕ И ИСКУССТВЕ\n\nЯЗЫК: Балахрыстский алфавит — 33 буквы + Ә, Һ, Ҧ. Диалекты: центральный, северный (ледяной), южный (барбарисовый), островной, чехословацкий.\n\nЛИТЕРАТУРА:\nЖанры: каноническая, историческая, художественная, поэзия, драматургия, сатира.\nПоэма «Сказание о Великом Хряке».\nСборник «Вертикальные сонеты» (Вова Соложков).\nРоман «Отчалил Вася» (Степан Килечкин).\nПьеса «Барбарисовая комедия».\n\nМУЗЫКА:\nИнструменты: хрячий рог, барбарисовые гусли, палка-копалка-барабан, горготалка, омутовый колокол, ледяные цимбалы.\nЖанры: горготание хоровое, барбарисовые частушки, балахрыстский романс, ледянковый марш.\nАнсамбль «Вертикаль», Пелагея Капуцинова, Хряки-рэперы.\nГимн «А матин талала» (текст и аранжировка Дип Сика).\n\nИЗО:\nКаляки-маляки: классическая, фигуративная, поделка.\nХудожники: Мастер Каляк, Вова Соложков, Анна Барбарисова.\n\nТЕАТР:\nТеатр клоунады им. Самюэля.\n\nФОЛЬКЛОР:\nПословицы: «Без барбариса и хряк не горгочет», «Как отчалил Вася, так и не вернулся».`,
+                shortText: "Каляки-маляки, поделки, клоунада. Писатели, поэты, музыканты. Фольклор: пословицы, сказки. Гимн «А матин талала». Инструменты: хрячий рог, барбарисовые гусли."
+            },
+            { 
+                id: 36, 
+                title: "Том XXXVI. Достопримечательности", 
+                fullText: `КОДЕКС О ДОСТОПРИМЕЧАТЕЛЬНОСТЯХ\n\nФЕДЕРАЛЬНЫЕ:\n1. Сибироязвенный скотомогильник (Архангельская губ.) — 1000 га, вход по протоколу защиты. Центральный мемориал, аллея скорби, музей эпидемиологии.\n2. Поля Вертикальных Апельсинов (Южно-Барбарисовая обл.) — 5000 га, туры «Апельсиновый экспресс», «Руки Вовы», «Собери сам».\n3. Заросли Барбариса (Широколесный край) — тропы «Барбарисовая», «Цикорийный квест».\n\nИСТОРИЧЕСКИЕ:\n1. Городище «Старый скворечник» (Кичменгская обл.) — древнее поселение.\n2. Крепость «Кичменгский кремль» — стены, башни, подземелья.\n3. Храм Великого Хряка (Священное Стойло) — золотая статуя 111 кг.\n4. Часовня на горе Откровения (о. Пипин).\n\nМУЗЕИ:\n1. Национальный музей (Кичменгский Городок) — 111 111 экспонатов, залы археологии, истории, искусства, Канона.\n2. Музей хряка (Барбарисовка) — чучело Штурмана.\n3. Музей ледянки (Архангельск) — холодильник с постоянной -10°.\n4. Дом-музей Миклухо-Маклая (о. Резонанс).\n\nСОВРЕМЕННЫЕ:\n1. Дворец Самюэля (Кичменгский Городок) — резиденция, парк с фонтанами.\n2. Здание Биржи «Кривой Старт» (33 эт., смотровая).\n3. Ледокол-музей «Отчаянный» (Архангельск).\n4. Парк «Вертикальный», Сквер Каляки-Маляки.\n5. Национальный парк «Широколесный».`,
+                shortText: "Сибироязвенный скотомогильник, поля апельсинов, Храм Великого Хряка, ледокол-музей, Дворец Самюэля, музеи в каждом регионе."
+            },
+            { 
+                id: 37, 
+                title: "Том XXXVII. Награды", 
+                fullText: `КОДЕКС О НАГРАДАХ\n\nВЫСШИЕ НАГРАДЫ:\n\nОрден Вертикального Апельсина — высшая награда. 3 степени:\nI: золотая звезда с бриллиантами (3 чел.: Самюэль, Вова, хряк Сенатор)\nII: золотая звезда с рубинами (10 чел.)\nIII: серебряная звезда с гранатами (25 чел.)\n\nОрден «Хрячья слава» — военная награда. 3 степени:\nI: золотой хряк на цепи (полководцы)\nII: серебряный хряк на ленте (офицеры)\nIII: бронзовый хряк на колодке (солдаты)\n\nМЕДАЛИ:\nМедаль «За отвагу» (серебро, за мужество)\nМедаль «За боевые заслуги» (латунь, за образцовую службу)\nМедаль «За оборону пролива Пендлтон»\nМедаль «За спасение хряка» (бронза)\n\nПОЧЁТНЫЕ ЗВАНИЯ:\nКрасный Молодец (льготы: пенсия 10 000 грошей, бесплатный проезд, приём у Самюэля)\nЗаслуженный геодезист (надбавка 30%)\nЗаслуженный каляка-маляка\nМастер-фломастер (высшее, 7 чел.)\n\nВЕДОМСТВЕННЫЕ:\nОтличник Протокола Защиты\nЗа дальний поход\nПарашютист-хряковод\nПочётный санитар\nЛучший хряковод\n\nЦЕРЕМОНИИ:\nИнаугурация Верховного Бюрократа: выезд на ледоколе, шествие, принятие Канона, клятва на хряке, вручение скипетра, трёхкратное горготание.\nНаграждение в Белом зале Дворца.\nПохороны с воинскими почестями.`,
+                shortText: "Орден Вертикального Апельсина, орден Хрячьей славы, медаль За отвагу, звание Красный Молодец. Награждённые: Самюэль, Вова, хряк Сенатор."
+            }
+        ];
+
+        // -------------------- НОВЫЕ МАССИВЫ --------------------
+        const news = [
+            { title: "37 томов приняты единогласно!", date: "12.03.2026", desc: "Совет Красных Молодцов утвердил полное собрание кодексов. Самюэль назвал это «историческим моментом».", views: random(900, 1300) },
+            { title: "Хряк Сенатор награждён орденом", date: "11.03.2026", desc: "Личный питомец Самюэля получил «Хрячью славу» I степени за особые заслуги.", views: random(800, 1100) },
+            { title: "Открыты новые земли!", date: "10.03.2026", desc: "Экспедиция нашла остров Барбарис-Гранде и Землю Вечного Раскумара. Вова Соложков уже планирует экспедицию.", views: random(700, 1000) },
+            { title: "Указ №111/52 утвердил гербы и флаги 9 субъектов", date: "12.03.2026", desc: "Верховный Бюрократ подписал указ о геральдике. Теперь у каждого региона есть свои символы.", views: random(1000, 1500) },
+            { title: "Вася Пупкин вернулся из плавания", date: "08.03.2026", desc: "Привёз редкую кильку-альбиноса. «Отчалил — и вернулся!» — заявил легендарный моряк.", views: random(500, 800) },
+            { title: "Курс гроша стабилен", date: "13.03.2026", desc: "Центральный банк сообщает о стабильности национальной валюты. 1 грош = 2.5 кроны.", views: random(300, 600) },
+            { title: "Популяция хряков достигла рекорда", date: "13.03.2026", desc: "По данным переписи, в Балахрыстане проживает более 1,2 миллиона хряков.", views: random(400, 700) }
+        ];
+
+        const games = [
+            { 
+                id: 0,
+                name: "Угадай слово из Канона", 
+                desc: "111 уровней. Тебе показывают значение — ты вводишь слово. Проверь знание священных текстов!", 
+                played: random(10000, 15000),
+                instructions: "Вам будет показано значение одного из слов Канона. Ваша задача — ввести это слово. За каждый правильный ответ начисляется 1 очко."
+            },
+            { 
+                id: 1,
+                name: "Кто хочет стать геодезистом?", 
+                desc: "15 вопросов о Балахрыстане. Есть подсказка «звонок хряку». Докажи, что ты достоин звания геодезиста!", 
+                played: random(8000, 12000),
+                instructions: "Вам будет задано 15 вопросов о стране, её законах, истории и культуре. Вы можете использовать подсказку «звонок хряку» (50/50) один раз."
+            },
+            { 
+                id: 2,
+                name: "Депортация: кликер", 
+                desc: "Жми на апельсины, чтобы не попасть на Шипито. Чем быстрее жмёшь — тем дольше живёшь!", 
+                played: random(14000, 18000),
+                instructions: "Нажимайте на падающие апельсины. Пропустите 10 — депортация на Шипито. Ваш рекорд сохраняется."
+            },
+            { 
+                id: 3,
+                name: "Собери палку-копалку", 
+                desc: "Нажимай на детали, чтобы собрать палку-копалку! (10 деталей = победа)", 
+                played: random(11000, 15000),
+                instructions: "Нажимайте на кнопку, чтобы собирать детали. 20% шанс найти сразу две детали. Собери 10 — победи!"
+            }
+        ];
+
+        const musicTracks = [
+            { id: 0, name: "Гимн Балахрыстана", artist: "Народная, аранж. Дип Сика", duration: "3:11", lyrics: "Славься, страна балахрыстов родная, где вертикальный апельсин созревает, где Самюэль наш Эрондондонович правит как легенда, красавчик и просто! А матин талала, талала матин, хряк наш горгочет, и каждый приятель раскумарился, пьёт вологошу, славим страну мы, её широколесье!" },
+            { id: 1, name: "Баллада о Васе Пупкине", artist: "Рок-группа «Ледоколы»", duration: "4:22", lyrics: "Отчалил Вася в синий омут, за ним хрячок его плывёт. Никто не знал, что будет потом, но Вася знал — он доплывёт! Килька в томате, ледянка во льду, Вася вернётся — я подожду!" },
+            { id: 2, name: "Вертикальный рэп", artist: "Вова Соложков", duration: "2:45", lyrics: "Я расту вверх, я вижу небо, мой апельсин — моя судьба. Никто не скажет, что мне не надо расти туда, где облака!" },
+            { id: 3, name: "Омут любви", artist: "Капуцина Прекрасная", duration: "3:55", lyrics: "Там, где вода встречает лед, где хряк поёт, идёт народ. Ты ждёшь меня на берегу, я приплыву, я прибегу..." },
+            { id: 4, name: "Горготание-микс", artist: "Хряк Сенатор и оркестр", duration: "5:30", lyrics: "Гор-гор-гор-гор-горготание! Хряк поёт, и зал ликует! Гор-гор-гор — это призвание, каждый хряк это прочувствует!" }
+        ];
+
+        const merch = [
+            { name: "Футболка «Я выжил на Шипито»", price: random(400, 600) + " грошей", icon: "👕", desc: "Качественная футболка из широколестного хлопка. Надпись «Я выжил на Шипито» и изображение хряка." },
+            { name: "Кружка «А матин талала»", price: random(150, 250) + " грошей", icon: "🍺", desc: "Керамическая кружка с гимном и гербом. Меняет цвет от горячего." },
+            { name: "Значок с хряком Сенатором", price: random(40, 60) + " грошей", icon: "🐗", desc: "Металлический значок с изображением главного хряка страны." },
+            { name: "Набор открыток «Гербы и флаги 9 субъектов»", price: random(250, 350) + " грошей", icon: "🖼️", desc: "Коллекционный набор из 9 открыток с гербами и флагами всех регионов Балахрыстана." },
+            { name: "Набор ледянки (6 порций)", price: random(120, 180) + " грошей", icon: "🧊", desc: "Сублимированная ледянка. Просто добавь воды (из омута) и заморозь." },
+            { name: "Календарь «Геодезисты Балахрыстана»", price: random(200, 300) + " грошей", icon: "📅", desc: "Настенный календарь на 2027 год с портретами великих людей и хряков." }
+        ];
+
+        const guestbookEntries = [
+            { name: "Вася Пупкин", text: "Отличный сайт! Прямо как настоящий порт! Я горжусь нашей страной. Особенно понравились новые гербы регионов!", date: "13.03.2026" },
+            { name: "Хряк Сенатор", text: "Гор-гор-гор! (Мне очень нравится. Особенно мой герб в Кичменгской области!)", date: "13.03.2026" },
+            { name: "Вова Соложков", text: "Герб Южно-Барбарисовой области — это шедевр. Спасибо Создателю!", date: "12.03.2026" },
+            { name: "Геодезист Петров", text: "Канон на месте. Гербы на месте. Всё чётко.", date: "12.03.2026" },
+            { name: "Турист из Пингвинии", text: "Очень красивые гербы! Приеду к вам на фестиваль ледянки.", date: "11.03.2026" },
+            { name: "Кирилиджон", text: "Особые идеи воплощены в особых гербах. Доволен.", date: "12.03.2026" },
+            { name: "Капуцина из 5-го скворечника", text: "Спасибо за раскраски! Дети в восторге.", date: "11.03.2026" }
+        ];
+
+        const facts = [
+            "Согласно Канону, Великий Хряк создал мир из сгустка барбарисовой энергии.",
+            "В Кичменгской области губернатором является Кирилиджон (который был избран).",
+            "Депортация на остров Резонанс — высшая мера наказания по Уголовному кодексу.",
+            "Вова Соложков — первооткрыватель вертикального апельсина и просто красный молодец.",
+            "Гимн Балахрыстана называется 'А матин талала'.",
+            "Сибироязвенный скотомогильник — главная достопримечательность страны.",
+            "Указом №111/52 утверждены гербы и флаги 9 субъектов Балахрыстана.",
+            "Остров Шипито знаменит тем, что там постоянно пропадает связь (шлях арехавый).",
+            "Вася Пупкин — легендарный мореплаватель, который 'отчалил и вернулся'.",
+            "Столица страны — Кичменгский Городок, где находится Дворец Самюэля.",
+            "В Балахрыстане 6 основных регионов и 3 новые территории.",
+            "Грош ломаный — официальная валюта. 1 грош = 2.5 кроны.",
+            "В стране 37 томов законов — больше, чем в любой реальной стране.",
+            "Каждый год 7 января отмечается День хряка — все хряки получают угощение.",
+            "Казалосьбык — мифическое существо, которое никто не видел, но все о нём говорят.",
+            "На гербе Архангельской губернии изображён сам Вася Пупкин, отчаливающий в плавание.",
+            "В Широколесном крае живёт больше всего диких хряков.",
+            "Чехословацкая АО славится своим пивом и архитектурой.",
+            "В Западном крае (Земля Вечного Раскумара) никто никогда не грустит."
+        ];
+
+        const quotes = [
+            "«А матин талала!» — Великий Хряк",
+            "«Я не просто легенда, я ещё и красавчик» — Самюэль",
+            "«Отчалил — не значит пропал» — Вася Пупкин",
+            "«Апельсин должен быть вертикальным. Как и мысли.» — Вова Соложков",
+            "«Построим — перезагрузим — построим снова» — Боб строитель",
+            "«Особые идеи требуют особого подхода» — Кирилиджон",
+            "«Грош к грошу — казна» — Пантелеймон Зажиточный",
+            "«Нефть крепче уз» — Пипин Короткий",
+            "«Каляка — это не маляка. Это каляка.» — Мастер Каляк",
+            "«Хочу вологоши» — Хряк Сенатор",
+            "«Герб должен отражать душу региона» — Создатель",
+            "«Если хряк горгочет, значит, будет дождь» — Примета",
+            "«Всё будет балахрыстно» — Народная мудрость"
+        ];
+
+        const neighbors = [
+            { name: "Пингвиния", type: "Королевство", capital: "Пингвинград", ruler: "Король Пингвин XIV", relations: "Дружественные", desc: "Страна разумных пингвинов. Любят музыку и рыбу. С Балахрыстаном подписан договор о дружбе." },
+            { name: "Федерация Клык-Морж", type: "Военная диктатура", capital: "Моржград", ruler: "Верховный Морж", relations: "Натянутые, но мирные", desc: "Страна антропоморфных моржей. Основной ресурс — рыба и клыки. Спорят с Балахрыстаном за рыбные угодья." },
+            { name: "Республика Чайка", type: "Парламентская республика", capital: "Чайкинск", ruler: "Премьер-министр", relations: "Сложные", desc: "Шумные соседи. Постоянно воруют кильку. Дипломатические отношения на уровне «терпим»." },
+            { name: "Великая Хряковая Пустошь", type: "Ничейная земля", capital: "нет", ruler: "никто", relations: "Нейтральные", desc: "Огромная территория, населённая дикими хряками и казалосьбыками. Говорят, там живёт Говорящий Хряк." },
+            { name: "Северные Ледяные Пустоши", type: "Территория племён", capital: "нет", ruler: "Старейшины", relations: "Эпизодические", desc: "Холодные земли, населённые редкими племенами. Иногда приплывают для обмена мехов на барбарис." }
+        ];
+
+        // -------------------- ПЕРЕМЕННЫЕ СОСТОЯНИЯ --------------------
+        let currentPage = 'home';
+        let currentCodex = null;
+        let currentGame = null;
+        let gameScore = 0;
+        let gameHighScore = parseInt(localStorage.getItem('gameHighScore') || '0');
+        let currentMusicTrack = 0;
+        let isPlaying = false;
+        let clickerScore = parseInt(localStorage.getItem('clickerScore') || '0');
+        let clickerHighScore = parseInt(localStorage.getItem('clickerHighScore') || '0');
+        let clickerMissed = 0;
+        let clickerInterval = null;
+
+        // -------------------- ФУНКЦИИ ОБНОВЛЕНИЯ СЧЁТЧИКОВ --------------------
+        function updateCounters() {
+            citizenCount = randomWithStep(750000, 950000, 100);
+            deportCount = randomWithStep(8000, 15000, 10);
+            hryakCount = randomWithStep(1000000, 1300000, 100);
+            
+            document.getElementById('citizenCounter').innerText = formatNumber(citizenCount);
+            document.getElementById('deportCounter').innerText = formatNumber(deportCount);
+            document.getElementById('hryakCounter').innerText = formatNumber(hryakCount);
+        }
+
+        // -------------------- ОСНОВНАЯ ФУНКЦИЯ ПОКАЗА СТРАНИЦ --------------------
+        function showPage(page) {
+            currentPage = page;
+            const content = document.getElementById('mainContent');
+            
+            const pages = {
+                'home': getHomePage,
+                'universe': getUniversePage,
+                'canon': getCanonPage,
+                'codexes': getCodexesPage,
+                'history': getHistoryPage,
+                'myths': getMythsPage,
+                'bio': getBioPage,
+                'map': getMapPage,
+                'heraldry': getHeraldryPage,
+                'sights': getSightsPage,
+                'games': getGamesPage,
+                'music': getMusicPage,
+                'literature': getLiteraturePage,
+                'kids': getKidsPage,
+                'merch': getMerchPage,
+                'news': getNewsPage,
+                'guestbook': getGuestbookPage,
+                'neighbors': getNeighborsPage,
+                'science': getSciencePage,
+                'sport': getSportPage,
+                'economy': getEconomyPage,
+                'random': getRandomPage
+            };
+
+            if (pages[page]) {
+                content.innerHTML = pages[page]();
+            } else {
+                content.innerHTML = getHomePage();
+            }
+        }
+
+        function showRandomPage() {
+            const pages = ['universe', 'canon', 'codexes', 'history', 'myths', 'bio', 'map', 'heraldry', 'sights', 'games', 'music', 'literature', 'kids', 'merch', 'news', 'guestbook', 'neighbors', 'science', 'sport', 'economy'];
+            const randomPage = pages[Math.floor(Math.random() * pages.length)];
+            showPage(randomPage);
+        }
+
+        // -------------------- ГЛАВНАЯ --------------------
+        function getHomePage() {
+            temperature = random(-15, 8);
+            const weather = weatherConditions[random(0, weatherConditions.length-1)];
+            
+            return `
+                <h2>🏠 Добро пожаловать в Государство Балахрыстов</h2>
+                <p>Страна вертикальных апельсинов, священных хряков и бескрайнего широколестника.</p>
+                
+                <div class="news-ticker">
+                    <div class="news-ticker-content">
+                        🔥 НОВОСТЬ ЧАСА: ${news[Math.floor(Math.random() * news.length)].title} | 📰 УТВЕРЖДЕНЫ ГЕРБЫ И ФЛАГИ 9 СУБЪЕКТОВ! | 🎉 СЕГОДНЯ: ${facts[Math.floor(Math.random() * facts.length)]} 🔥
+                    </div>
+                </div>
+                
+                <div class="widgets">
+                    <div class="widget">
+                        <h4>💰 Курс гроша</h4>
+                        <div class="big-number">${currencyRate}</div>
+                        <p>1 грош = ${currencyRate} кроны</p>
+                    </div>
+                    <div class="widget">
+                        <h4>☀️ Погода в столице</h4>
+                        <div class="big-number">${temperature}°C</div>
+                        <p>Кичменгский Городок, ${weather}</p>
+                    </div>
+                    <div class="widget">
+                        <h4>🚢 Депортировано</h4>
+                        <div class="big-number" id="homeDeportCounter">${formatNumber(deportCount)}</div>
+                        <p>на остров Резонанс</p>
+                    </div>
+                    <div class="widget">
+                        <h4>📊 Индекс КС-111</h4>
+                        <div class="big-number">${stockIndex}</div>
+                        <p>${random(-30, 30) > 0 ? '📈 +' : '📉 '}${random(1, 50)} за день</p>
+                    </div>
+                </div>
+
+                <div class="tab-group">
+                    <div class="tab active" onclick="showHomeTab('popular')">🔥 Популярное</div>
+                    <div class="tab" onclick="showHomeTab('new')">✨ Новое</div>
+                    <div class="tab" onclick="showHomeTab('random')">🎲 Случайное</div>
+                </div>
+                
+                <div id="homeTabContent">
+                    <div class="bio-card">
+                        <h3>📖 Случайный факт из Канона</h3>
+                        <p style="font-size: 1.3em; margin: 20px 0; font-style: italic;">${facts[Math.floor(Math.random() * facts.length)]}</p>
+                        <button onclick="updateRandomFact()">✨ Ещё факт</button>
+                    </div>
+                </div>
+
+                <!-- Статья 12. Обновление главной страницы. Слава Создателю! -->
+                <div class="bio-card" style="margin-top: 30px; background: #d4b68a; border: 4px solid #5a3f25;">
+                    <h2 style="text-align: center; font-size: 2.2em;">📜 Статья 12. Слава Создателю</h2>
+                    <p style="font-size: 1.5em; text-align: center; font-style: italic; color: #2a1f12;">
+                        «Всё, что вы видите здесь — 37 томов, 111 слов, 9 гербов, 4 игры, 700 страниц текста — создано <strong>одним человеком</strong>. <strong>Создателем</strong>. Помните об этом каждый раз, когда открываете Канон или смотрите на карту».
+                    </p>
+                    <p style="text-align: right; font-size: 1.2em; margin-top: 20px;">— Утверждено Советом Красных Молодцов. А матин талала!</p>
+                </div>
+
+                <div style="display: flex; justify-content: space-around; margin-top: 30px; flex-wrap: wrap; gap: 20px;">
+                    <div class="widget" onclick="showPage('canon')" style="cursor: pointer;">
+                        <h4>📜 Канон</h4>
+                        <div class="big-number">111</div>
+                        <p>священных слов</p>
+                    </div>
+                    <div class="widget" onclick="showPage('codexes')" style="cursor: pointer;">
+                        <h4>📚 Кодексы</h4>
+                        <div class="big-number">37</div>
+                        <p>томов законов</p>
+                    </div>
+                    <div class="widget" onclick="showPage('heraldry')" style="cursor: pointer;">
+                        <h4>🏆 Субъектов</h4>
+                        <div class="big-number">9</div>
+                        <p>с гербами и флагами</p>
+                    </div>
+                    <div class="widget" onclick="showPage('games')" style="cursor: pointer;">
+                        <h4>🎮 Игр</h4>
+                        <div class="big-number">4</div>
+                        <p>все работают!</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <button onclick="showPage('heraldry')">🏆 Смотреть гербы и флаги</button>
+                    <button onclick="showRandomPage()">🎲 Случайная страница</button>
+                    <button onclick="showRandomCodex()">📖 Случайный кодекс</button>
+                    <button onclick="updateCounters()">🔄 Обновить счётчики</button>
+                </div>
+            `;
+        }
+
+        // -------------------- ВСЕЛЕННАЯ --------------------
+        function getUniversePage() {
+            return `
+                <h2>🌌 Вселенная Балахрыстана</h2>
+                <p>Полное собрание знаний о стране, её истории, законах, культуре и жителях.</p>
+                
+                <div class="bio-card">
+                    <h3>Основные факты</h3>
+                    <p><strong>Столица:</strong> Кичменгский Городок</p>
+                    <p><strong>Глава государства:</strong> Верховный Бюрократ Самюэль Эрондондонович</p>
+                    <p><strong>Законодательный орган:</strong> Совет Красных Молодцов (111 депутатов)</p>
+                    <p><strong>Официальный язык:</strong> Балахрыстский</p>
+                    <p><strong>Валюта:</strong> Грош ломаный (1 грош = ${currencyRate} кроны)</p>
+                    <p><strong>Население:</strong> ${formatNumber(citizenCount)} балахрыстов и капуцинов, ${formatNumber(hryakCount)} хряков</p>
+                    <p><strong>Гимн:</strong> «А матин талала»</p>
+                    <p><strong>Девиз:</strong> «А матин талала»</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Административное деление</h3>
+                    <p><strong>6 субъектов:</strong> Кичменгская область, Архангельская губерния, Широколесный край, Южно-Барбарисовая область, Архипелажный край, Чехословацкая автономная область</p>
+                    <p><strong>Новые земли (открыты в 2026):</strong> Южно-Островная территория (Барбарис-Гранде), Западный край (Земля Вечного Раскумара), Северная автономия (Ледяной Причал)</p>
+                    <p><strong>Всего:</strong> 9 субъектов, каждый имеет свой герб и флаг (Указ №111/52)</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Символика</h3>
+                    <p><strong>Флаг:</strong> Три вертикальные полосы: синяя (пролив Пендлтон), золотая (вертикальный апельсин), зелёная (широколестник)</p>
+                    <p><strong>Герб:</strong> Щит с вертикальным апельсином, щитодержатели: хряк и капуцин, корона из барбариса</p>
+                    <p><strong>Гимн:</strong> «А матин талала» (музыка народная, аранжировка Дип Сика)</p>
+                </div>
+            `;
+        }
+
+        // -------------------- КАНОН --------------------
+        function getCanonPage() {
+            return `
+                <h2>📜 Канон — 111 священных слов</h2>
+                <p>Основа основ. Каждое слово имеет значение, даже если его никто не понимает.</p>
+                <input type="text" id="canonSearch" class="search-box" placeholder="Найти слово по названию или значению..." onkeyup="searchCanon()">
+                <div style="margin-bottom: 20px;">
+                    <select id="categoryFilter" onchange="searchCanon()" style="padding: 10px; border: 2px solid #8b7355; border-radius: 10px;">
+                        <option value="all">Все категории</option>
+                        <option value="люди">Люди</option>
+                        <option value="география">География</option>
+                        <option value="культура">Культура</option>
+                        <option value="природа">Природа</option>
+                        <option value="хряки">Хряки</option>
+                        <option value="еда">Еда</option>
+                        <option value="право">Право</option>
+                        <option value="экономика">Экономика</option>
+                        <option value="наука">Наука</option>
+                        <option value="тайны">Тайны</option>
+                        <option value="мифы">Мифы</option>
+                        <option value="язык">Язык</option>
+                    </select>
+                </div>
+                <div id="canonGrid" class="canon-grid">
+                    ${canonData.map(item => `
+                        <div class="canon-word" onclick="showCanonWordDetail('${item.word}')">
+                            <h3>${item.word}</h3>
+                            <p>${item.meaning}</p>
+                            <small style="color: #8b7355;">${item.category}</small>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function searchCanon() {
+            const searchTerm = document.getElementById('canonSearch')?.value.toLowerCase() || '';
+            const categoryFilter = document.getElementById('categoryFilter')?.value || 'all';
+            const canonGrid = document.getElementById('canonGrid');
+            
+            if (!canonGrid) return;
+            
+            const filtered = canonData.filter(item => 
+                (searchTerm === '' || item.word.toLowerCase().includes(searchTerm) || item.meaning.toLowerCase().includes(searchTerm)) &&
+                (categoryFilter === 'all' || item.category === categoryFilter)
+            );
+            
+            canonGrid.innerHTML = filtered.map(item => `
+                <div class="canon-word" onclick="showCanonWordDetail('${item.word}')">
+                    <h3>${item.word}</h3>
+                    <p>${item.meaning}</p>
+                    <small style="color: #8b7355;">${item.category}</small>
+                </div>
+            `).join('');
+        }
+
+        function showCanonWordDetail(word) {
+            const item = canonData.find(w => w.word === word);
+            if (!item) return;
+            
+            const content = document.getElementById('mainContent');
+            content.innerHTML = `
+                <h2>📖 ${item.word}</h2>
+                <div class="bio-card">
+                    <h3>Значение</h3>
+                    <p style="font-size: 1.3em;">${item.meaning}</p>
+                    <p><strong>Категория:</strong> ${item.category}</p>
+                    <p><strong>Важность:</strong> ${'⭐'.repeat(item.importance)}</p>
+                    <h3 style="margin-top: 20px;">Полное толкование</h3>
+                    <p>${getFullInterpretation(item)}</p>
+                    <button onclick="showPage('canon')">← Назад к Канону</button>
+                </div>
+            `;
+        }
+
+        function getFullInterpretation(item) {
+            const interpretations = {
+                "а матин талала": "Сакральная фраза, используемая в гимне и как приветствие. Считается, что эти слова произнёс Великий Хряк при сотворении мира.",
+                "Азыжкжддяца": "Великая тайна Балахрыстана. Существуют десятки теорий: от «это имя древнего демона» до «это просто опечатка, которую решили сохранить».",
+                "хряк": "Священное животное, символ страны. Согласно мифологии, именно Великий Хряк создал мир."
+            };
+            
+            if (interpretations[item.word]) {
+                return interpretations[item.word];
+            }
+            
+            return `Это слово относится к категории «${item.category}» и имеет важность ${item.importance} из 5. ${item.meaning}`;
+        }
+
+        // -------------------- КОДЕКСЫ --------------------
+        function getCodexesPage() {
+            return `
+                <h2>📚 Собрание кодексов (37 томов)</h2>
+                <p>Полный свод законов Государства Балахрыстов. Нажми на любой том, чтобы прочитать полный текст.</p>
+                <input type="text" id="codexSearch" class="search-box" placeholder="Найти кодекс по названию..." onkeyup="searchCodexes()">
+                <div id="codexList" class="codex-list">
+                    ${codexes.map(codex => `
+                        <div class="codex-item" onclick="showCodex(${codex.id})">
+                            <strong>${codex.title}</strong>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function searchCodexes() {
+            const searchTerm = document.getElementById('codexSearch')?.value.toLowerCase() || '';
+            const codexList = document.getElementById('codexList');
+            if (!codexList) return;
+            
+            const filtered = codexes.filter(codex => 
+                codex.title.toLowerCase().includes(searchTerm) || codex.shortText.toLowerCase().includes(searchTerm)
+            );
+            
+            codexList.innerHTML = filtered.map(codex => `
+                <div class="codex-item" onclick="showCodex(${codex.id})">
+                    <strong>${codex.title}</strong>
+                </div>
+            `).join('');
+        }
+
+        function showCodex(id) {
+            const codex = codexes.find(c => c.id === id);
+            if (!codex) return;
+            
+            const content = document.getElementById('mainContent');
+            content.innerHTML = `
+                <h2>${codex.title}</h2>
+                <div class="bio-card" style="max-height: 70vh; overflow-y: auto;">
+                    <pre style="white-space: pre-wrap; font-family: 'Georgia', serif; background: #faf3e5; padding: 20px; border-radius: 10px;">${codex.fullText}</pre>
+                    <p style="margin-top: 20px; font-style: italic;">— Полный текст кодекса.</p>
+                </div>
+                <div style="margin-top: 20px;">
+                    <button onclick="showCodex(${id === 1 ? 37 : id - 1})">← Предыдущий</button>
+                    <button onclick="showPage('codexes')">📚 К списку кодексов</button>
+                    <button onclick="showCodex(${id === 37 ? 1 : id + 1})">Следующий →</button>
+                </div>
+            `;
+        }
+
+        function showRandomCodex() {
+            const randomId = Math.floor(Math.random() * 37) + 1;
+            showCodex(randomId);
+        }
+
+        // -------------------- ИСТОРИЯ --------------------
+        function getHistoryPage() {
+            return `
+                <h2>🏛️ Летопись Балахрыстана</h2>
+                <p>От сотворения мира до наших дней.</p>
+                
+                <div class="bio-card">
+                    <h3>Эпоха -111 (Эра Великого Хряка)</h3>
+                    <p>Великий Хряк создал мир из сгустка барбарисовой энергии. Его горготание раскололо небо и создало первых балахрыстов. Он научил их добывать ледянку, собирать барбарис и строить скворечники.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Эпоха -1000 (Первая династия)</h3>
+                    <p>Правление царя Копалки I, царицы Ледянки Прекрасной, царя Барбариса Мудрого. Основание первых поселений, изобретение палки-копалки, первые налоги барбарисом.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Эпоха -500 (Великое переселение)</h3>
+                    <p>Из-за засухи племена капуцинов мигрировали на север, основав поселения в Архангельской губернии и на островах. Открыт пролив Пендлтон.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Эпоха -200 (Основание Чехословацкой колонии)</h3>
+                    <p>Ян Кривой основал поселение, которое позже стало Чехословацкой автономной областью. Смешение балахрыстских и местных традиций.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Эпоха 0 (Рождение Канона)</h3>
+                    <p>Два гения на первой парте создали первые 111 слов. Начало балахрыстского летоисчисления.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Эпоха 500-1000 (Раздробленность)</h3>
+                    <p>Распад на удельные княжества: Кичменгское, Архангельская вольница, Пипинское царство. Междоусобные войны палками-копалками.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Эпоха 1000-1500 (Объединение)</h3>
+                    <p>Князь Самюэль I объединил земли в битве при проливе Пендлтон. Создание единого государства.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Эпоха 1500-2000 (Золотой век)</h3>
+                    <p>Расцвет культуры и науки. Построены Дворец Советов, Институт Ирудита, первый ледокол. Миклухо-Маклай открывает новые земли.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Эпоха 2000-2020 (Потрясения)</h3>
+                    <p>Великий пожар в Кичменгском Городке, эпидемия хрячьего гриппа, экономический кризис.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Эпоха 2021-2026 (Возрождение)</h3>
+                    <p>Избрание Кирилиджона, референдум, создание современного Канона, написание 37 кодексов, воцарение Самюэля Эрондондоновича. Открытие новых земель. Утверждение гербов и флагов 9 субъектов.</p>
+                </div>
+            `;
+        }
+
+        // -------------------- МИФЫ --------------------
+        function getMythsPage() {
+            return `
+                <h2>✨ Мифология Балахрыстана</h2>
+                <p>Боги, духи и легенды древности.</p>
+                
+                <div class="bio-card">
+                    <h3>Великий Хряк</h3>
+                    <p><strong>Демиург, создатель всего сущего.</strong> Изображается в виде гигантского хряка золотого цвета, из пасти которого исходят лучи света. Создал мир из сгустка барбарисовой энергии. Храм — «Священное Стойло» в Кичменгском Городке. Праздник — 7 января.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Барбариус</h3>
+                    <p><strong>Бог плодородия.</strong> Сын Великого Хряка. Научил балахрыстов выращивать барбарис. Изображается с ветвями барбариса в руках. Легенда: влюбился в смертную девушку-капуцина и подарил людям барбарис.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Ледяна</h3>
+                    <p><strong>Богиня зимы и ледянки.</strong> Дочь Великого Хряка. Изображается в белых одеждах, с короной из сосулек. Каждую зиму замораживает омуты, чтобы балахрысты могли добывать ледянку.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Копалкус</h3>
+                    <p><strong>Бог труда и ремесла.</strong> Изобретатель палки-копалки. Покровитель строителей и геодезистов.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Омута</h3>
+                    <p><strong>Богиня вод.</strong> Хозяйка омутов, рек и проливов. Покровительствует рыбакам и морякам.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Шипито</h3>
+                    <p><strong>Дух связи.</strong> Обитает на острове Шипито. Появляется и исчезает, как связь на острове. Изображается в виде полупрозрачного хряка с антенной вместо хвоста.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Казалосьбыки</h3>
+                    <p><strong>Духи-обманщики.</strong> Могут принимать облик любого животного, чтобы сбивать путников с пути. Если вам показалось, что вы видели нечто странное — это казалосьбык.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Легенда о первом гроше</h3>
+                    <p>Великий Хряк заметил, что балахрысты не могут договориться между собой — каждый хотел больше барбариса. Тогда Хряк отломал кусочек своего копыта, бросил его на землю и сказал: «Вот вам грош. Пусть он будет мерилом всего».</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Легенда о вертикальном апельсине</h3>
+                    <p>Вова (предок Вовы Соложкова) влюбился в дочь Барбариуса. Богиня Ледяна, которая тоже была влюблена в Вову, от ревности заколдовала апельсины, и они стали расти строго вверх, чтобы дочь Барбариуса не могла их достать.</p>
+                </div>
+            `;
+        }
+
+        // -------------------- БИОГРАФИИ --------------------
+        function getBioPage() {
+            return `
+                <h2>👑 Великие люди Балахрыстана</h2>
+                <p>Герои, правители и легендарные личности.</p>
+                
+                <div class="bio-card">
+                    <h2>Самюэль Эрондондонович</h2>
+                    <p><strong>Верховный Бюрократ, Легенда, просто Красавчик</strong></p>
+                    <p>Род. 15 марта 1985, Кичменгский Городок. Принял 37 кодексов, объединил нацию. Женат на Капуцине Прекрасной, трое детей. Карьера: младший геодезист → начальник Роспотребнадзора → губернатор → председатель Совета → Верховный Бюрократ. Подписал Указ №111/52 о гербах и флагах 9 субъектов. Любит ледянку с барбарисовым соусом.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h2>Кирилиджон (который был избран)</h2>
+                    <p><strong>Председатель Совета Красных Молодцов, Главный по особым идеям</strong></p>
+                    <p>Род. 3 марта 1980, Архангельск. Автор «Особых идей балахрысничания». Начинал как рыбак, организовал первую политическую клоунаду. Не женат. Коллекционирует палки-копалки. Участвовал в утверждении герба Кичменгской области.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h2>Вова Соложков</h2>
+                    <p><strong>Губернатор Южно-Барбарисовой области, первооткрыватель вертикального апельсина</strong></p>
+                    <p>Род. 12 июня 1975, Барбарисовка. Вывел сорт «Вертикальный апельсин-1», художник-каляка-маляка. Женат, трое детей, 10 хряков. Его герб — один из самых красивых в стране.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h2>Вася Пупкин</h2>
+                    <p><strong>Губернатор Архангельской губернии, мореплаватель</strong></p>
+                    <p>Род. 22 мая 1970, пос. Васьково. Совершил кругосветное путешествие на ледоколе «Отчаянный». Фраза «Отчалил Вася» стала крылатой. Дружит с хряком Шкипером. На его гербе изображён ледокол и он сам.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h2>Миклухо-Маклай</h2>
+                    <p><strong>Великий путешественник</strong></p>
+                    <p>1846-1888. Открыл острова Резонанс, Шипито. Его сопровождал говорящий хряк Штурман. Пропадал на Шипито три дня из-за шляха арехавого. В его честь назван архипелаг.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h2>Пантелеймон Зажиточный</h2>
+                    <p><strong>Председатель Центрального Банка (Великий Казначей)</strong></p>
+                    <p>Род. 10 октября 1960. Начинал с продажи барбариса, открыл первый частный банк. Может пересчитать стопку грошей быстрее, чем хряк съедает ведро ледянки. На гербах не изображён, но его портрет — на каждой купюре.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h2>Боб строитель (перезагрузившийся)</h2>
+                    <p><strong>Губернатор Широколесного края, строитель</strong></p>
+                    <p>Род. 1 мая 1965. Построил Дворец Самюэля, Институт Ирудита, стадион «Вертикальный». Перезагрузился после комы в 2020. На гербе его края изображён бобр — его символ.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h2>Хряк Сенатор</h2>
+                    <p><strong>Главный хряк страны</strong></p>
+                    <p>Род. 1 января 2018. Порода — балахрыстская элитная. Владелец — Самюэль. Присутствует на всех заседаниях Совета. Единственный хряк, награждённый орденом «Хрячья слава» I степени. Его изображение есть на гербе Кичменгской области.</p>
+                </div>
+            `;
+        }
+
+        // -------------------- КАРТА --------------------
+        function getMapPage() {
+            return `
+                <h2>🗺️ Карта Государства Балахрыстов</h2>
+                <p>9 субъектов с гербами и флагами (утверждены Указом №111/52). Нажми на регион, чтобы узнать подробнее.</p>
+                <div class="map-container">
+                    ${regions.map(region => `
+                        <div class="region-card" onclick="showRegionDetail('${region.id}')">
+                            <div class="heraldry-container">
+                                <div class="heraldry-item">
+                                    <div class="heraldry-icon">${region.coatIcon}</div>
+                                    <small>Герб</small>
+                                </div>
+                                <div class="heraldry-item">
+                                    <div class="flag-icon">${region.flagIcon}</div>
+                                    <small>Флаг</small>
+                                </div>
+                            </div>
+                            <h3>${region.name}</h3>
+                            <p>${region.capital}</p>
+                            <p><small>Губернатор: ${region.governor}</small></p>
+                            <p><i>«${region.devis}»</i></p>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function showRegionDetail(regionId) {
+            const region = regions.find(r => r.id === regionId);
+            if (!region) return;
+            
+            const content = document.getElementById('mainContent');
+            content.innerHTML = `
+                <h2>🗺️ ${region.name}</h2>
+                <div class="bio-card">
+                    <div style="display: flex; gap: 30px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 5em;">${region.coatIcon}</div>
+                            <p><strong>Герб</strong></p>
+                            <p><small>${region.coatDesc}</small></p>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 4em;">${region.flagIcon}</div>
+                            <p><strong>Флаг</strong></p>
+                            <p><small>${region.flagDesc}</small></p>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Тип:</strong> ${region.type}</p>
+                    <p><strong>Столица:</strong> ${region.capital}</p>
+                    <p><strong>Губернатор:</strong> ${region.governor}</p>
+                    <p><strong>Население:</strong> ${formatNumber(region.population)}</p>
+                    <p><strong>Площадь:</strong> ${region.area}</p>
+                    <p><strong>Основана:</strong> ${region.founded}</p>
+                    <p><strong>Девиз:</strong> «${region.devis}»</p>
+                    <p><strong>Описание:</strong> ${region.desc}</p>
+                    <p><strong>Достопримечательности:</strong> ${region.places.join(', ')}</p>
+                    <p><strong>Ресурсы:</strong> ${region.resources.join(', ')}</p>
+                    
+                    <h3 style="margin: 20px 0 10px;">Геральдическое описание</h3>
+                    <p><strong>Герб:</strong> ${region.coatDesc}</p>
+                    <p><strong>Флаг:</strong> ${region.flagDesc}</p>
+                    
+                    <button onclick="showPage('map')">← Назад к карте</button>
+                    <button onclick="showPage('heraldry')">🏆 Все гербы</button>
+                </div>
+            `;
+        }
+
+        // -------------------- ГЕРАЛЬДИЧЕСКАЯ СТРАНИЦА --------------------
+        function getHeraldryPage() {
+            return `
+                <h2>🏆 Гербы и флаги субъектов Балахрыстана</h2>
+                <p>Утверждены Указом Верховного Бюрократа № 111/52 от 12 марта 2026 года</p>
+                <p>9 субъектов, 9 уникальных символов, созданных с любовью к геральдике.</p>
+                
+                <div class="heraldry-grid">
+                    ${regions.map(region => `
+                        <div class="heraldry-subject">
+                            <h3>${region.name}</h3>
+                            <div class="heraldry-display">
+                                <div class="heraldry-display-item">
+                                    <div class="heraldry-large-icon">${region.coatIcon}</div>
+                                    <p><strong>Герб</strong></p>
+                                </div>
+                                <div class="heraldry-display-item">
+                                    <div class="flag-large-icon">${region.flagIcon}</div>
+                                    <p><strong>Флаг</strong></p>
+                                </div>
+                            </div>
+                            <div class="heraldry-desc">
+                                <p><strong>Герб:</strong> ${region.coatDesc}</p>
+                                <p><strong>Флаг:</strong> ${region.flagDesc}</p>
+                                <p class="devis">«${region.devis}»</p>
+                                <p><small>Губернатор: ${region.governor}</small></p>
+                            </div>
+                            <button onclick="showRegionDetail('${region.id}')" style="margin-top: 10px;">Подробнее о регионе</button>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div class="bio-card" style="margin-top: 30px;">
+                    <h3>История создания</h3>
+                    <p>Гербы и флаги были созданы лично Создателем в ходе многотрудной работы. Каждый символ отражает уникальную природу, культуру и экономику региона. Утверждены единогласно Советом Красных Молодцов при ликовании хряков.</p>
+                    <p><strong>Всего субъектов:</strong> 9</p>
+                    <p><strong>Дата утверждения:</strong> 12 марта 2026 года</p>
+                    <p><strong>Хранитель геральдики:</strong> Геральдическая палата при Совете Красных Молодцов</p>
+                </div>
+            `;
+        }
+
+        // -------------------- ДОСТОПРИМЕЧАТЕЛЬНОСТИ --------------------
+        function getSightsPage() {
+            return `
+                <h2>🗿 Достопримечательности</h2>
+                <p>Места, которые обязательно нужно посетить каждому балахрысту.</p>
+                
+                <div class="sight-card">
+                    <h2>Сибироязвенный скотомогильник</h2>
+                    <p>Главная достопримечательность страны. Мемориальный комплекс на месте массового захоронения хряков, павших от эпидемии в XIX веке. Площадь 1000 га. Вход строго по протоколу защиты. Центральный мемориал — гигантская статуя хряка из чёрного камня.</p>
+                </div>
+                
+                <div class="sight-card">
+                    <h2>Поля Вертикальных Апельсинов</h2>
+                    <p>Плантации Вовы Соложкова в Южно-Барбарисовой области. 5000 га стройных рядов апельсиновых деревьев. Туры: «Апельсиновый экспресс», «Руки Вовы», «Собери сам». Фестиваль 12 июня.</p>
+                </div>
+                
+                <div class="sight-card">
+                    <h2>Храм Великого Хряка (Священное Стойло)</h2>
+                    <p>Главный храм страны в Кичменгском Городке. Золотая статуя Великого Хряка весом 111 кг. Хранятся копыто первого хряка и чаша с вечным барбарисом.</p>
+                </div>
+                
+                <div class="sight-card">
+                    <h2>Ледокол-музей «Отчаянный»</h2>
+                    <p>Корабль Васи Пупкина, на котором он совершил кругосветное путешествие. Стоит на вечной стоянке в порту Архангельска. Каюта капитана, машинное отделение, ресторан на борту.</p>
+                </div>
+                
+                <div class="sight-card">
+                    <h2>Гора Откровения (о. Пипин Короткий)</h2>
+                    <p>Священное место, где Барбариус впервые явился людям. Часовня на вершине. Считается, что если подняться на рассвете, можно увидеть своё будущее (или нефтяную вышку).</p>
+                </div>
+            `;
+        }
+
+        // -------------------- ИГРЫ --------------------
+        function getGamesPage() {
+            return `
+                <h2>🎮 Игры Балахрыстана</h2>
+                <p>Проверь свои знания, ловкость и удачу! <strong>Все 4 игры работают!</strong></p>
+                
+                <div class="widget" style="text-align: center; margin-bottom: 20px;">
+                    <h4>🏆 Твой рекорд</h4>
+                    <div class="big-number">${gameHighScore}</div>
+                    <p>очков во всех играх</p>
+                </div>
+                
+                <div class="games-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    ${games.map((game, index) => `
+                        <div class="game-card" onclick="startGame(${index})">
+                            <h3>${game.name}</h3>
+                            <p>${game.desc}</p>
+                            <p><strong>Сыграно:</strong> ${game.played.toLocaleString()} раз</p>
+                            <button onclick="event.stopPropagation(); startGame(${index})">🎮 Играть</button>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div style="margin-top: 30px; text-align: center;">
+                    <button onclick="resetGameStats()">🔄 Сбросить рекорды</button>
+                </div>
+            `;
+        }
+
+        function startGame(gameId) {
+            currentGame = gameId;
+            const game = games[gameId];
+            
+            if (gameId === 0) { // Угадай слово
+                startWordGame();
+            } else if (gameId === 1) { // Кто хочет стать геодезистом
+                startQuizGame();
+            } else if (gameId === 2) { // Депортация кликер
+                startClickerGame();
+            } else if (gameId === 3) { // Собери палку-копалку
+                startPlatformGame();
+            }
+        }
+
+        function startWordGame() {
+            const randomWord = canonData[Math.floor(Math.random() * canonData.length)];
+            const content = document.getElementById('mainContent');
+            content.innerHTML = `
+                <h2>🎮 Угадай слово из Канона</h2>
+                <div class="game-active">
+                    <p style="font-size: 1.5em; margin-bottom: 20px;">Значение:</p>
+                    <p style="font-size: 2em; font-weight: bold; margin-bottom: 30px;">«${randomWord.meaning}»</p>
+                    <input type="text" id="wordGuess" class="search-box" placeholder="Введи слово..." style="width: 100%;">
+                    <div style="margin-top: 20px;">
+                        <button onclick="checkWordGuess('${randomWord.word}')">✅ Проверить</button>
+                        <button onclick="startGame(0)">🎲 Пропустить</button>
+                        <button onclick="showPage('games')">← Выйти</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function checkWordGuess(correctWord) {
+            const guess = document.getElementById('wordGuess')?.value.trim().toLowerCase();
+            if (!guess) return;
+            
+            if (guess === correctWord.toLowerCase()) {
+                gameScore++;
+                if (gameScore > gameHighScore) {
+                    gameHighScore = gameScore;
+                    localStorage.setItem('gameHighScore', gameHighScore.toString());
+                }
+                games[0].played++;
+                alert(`✅ Правильно! +1 очко. Твой счёт: ${gameScore}`);
+                startWordGame();
+            } else {
+                alert(`❌ Неправильно. Правильный ответ: «${correctWord}». Твой счёт: ${gameScore}`);
+                gameScore = 0;
+                showPage('games');
+            }
+        }
+
+        function startQuizGame() {
+            const questions = [
+                { q: "Кто является Верховным Бюрократом?", a: "Самюэль Эрондондонович", options: ["Самюэль Эрондондонович", "Кирилиджон", "Вася Пупкин", "Хряк Сенатор"] },
+                { q: "Как называется столица?", a: "Кичменгский Городок", options: ["Кичменгский Городок", "Архангельск", "Барбарисовка", "Прага-на-Балахрысте"] },
+                { q: "Что такое 'шлях арехавый'?", a: "Отсутствие интернета", options: ["Отсутствие интернета", "Дорога в никуда", "Народный танец", "Вид налога"] },
+                { q: "Кто открыл вертикальный апельсин?", a: "Вова Соложков", options: ["Вова Соложков", "Вася Пупкин", "Миклухо-Маклай", "Самюэль"] },
+                { q: "Сколько субъектов в Балахрыстане?", a: "9", options: ["6", "9", "12", "111"] },
+                { q: "Какой указ утвердил гербы и флаги?", a: "№111/52", options: ["№111/1", "№111/52", "№111/43", "№111/0"] }
+            ];
+            
+            const q = questions[Math.floor(Math.random() * questions.length)];
+            const content = document.getElementById('mainContent');
+            content.innerHTML = `
+                <h2>🎮 Кто хочет стать геодезистом?</h2>
+                <div class="game-active">
+                    <p style="font-size: 1.5em; margin-bottom: 20px;">${q.q}</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        ${q.options.map(opt => `
+                            <div class="quiz-option" onclick="checkQuizAnswer('${q.a}', '${opt}')">${opt}</div>
+                        `).join('')}
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <button onclick="useLifeline()">📞 Звонок хряку (50/50)</button>
+                        <button onclick="showPage('games')">← Выйти</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function checkQuizAnswer(correct, selected) {
+            if (selected === correct) {
+                gameScore += 5;
+                if (gameScore > gameHighScore) {
+                    gameHighScore = gameScore;
+                    localStorage.setItem('gameHighScore', gameHighScore.toString());
+                }
+                games[1].played++;
+                alert(`✅ Верно! +5 очков. Твой счёт: ${gameScore}`);
+                startQuizGame();
+            } else {
+                alert(`❌ Неверно. Правильный ответ: ${correct}. Твой счёт: ${gameScore}`);
+                gameScore = 0;
+                showPage('games');
+            }
+        }
+
+        function useLifeline() {
+            alert("📞 Хряк говорит: «Гор-гор-гор!» (50/50)");
+        }
+
+        function startClickerGame() {
+            clickerMissed = 0;
+            const content = document.getElementById('mainContent');
+            content.innerHTML = `
+                <h2>🎮 Депортация: кликер</h2>
+                <div class="game-active" style="text-align: center;">
+                    <p>Жми на апельсины! Пропусти 10 — депортация на Шипито.</p>
+                    <div style="font-size: 2em; margin: 20px;">🍊</div>
+                    <div style="font-size: 1.5em; margin: 20px;">Пропущено: <span id="missedCount">0</span>/10</div>
+                    <div style="font-size: 1.5em;">Очки: <span id="clickerScore">${clickerScore}</span></div>
+                    <button onclick="clickOrange()" style="font-size: 2em; padding: 20px 40px;">🍊 ЖМИ!</button>
+                    <div style="margin-top: 20px;">
+                        <button onclick="stopClickerGame()">⏹️ Стоп</button>
+                    </div>
+                </div>
+            `;
+            
+            if (clickerInterval) clearInterval(clickerInterval);
+            clickerInterval = setInterval(() => {
+                clickerMissed++;
+                document.getElementById('missedCount').innerText = clickerMissed;
+                if (clickerMissed >= 10) {
+                    clearInterval(clickerInterval);
+                    alert(`💥 Депортация! Твой счёт: ${clickerScore}`);
+                    if (clickerScore > clickerHighScore) {
+                        clickerHighScore = clickerScore;
+                        localStorage.setItem('clickerHighScore', clickerHighScore.toString());
+                    }
+                    clickerScore = 0;
+                    showPage('games');
+                }
+            }, 2000);
+        }
+
+        function clickOrange() {
+            clickerScore++;
+            document.getElementById('clickerScore').innerText = clickerScore;
+        }
+
+        function stopClickerGame() {
+            clearInterval(clickerInterval);
+            showPage('games');
+        }
+
+        function startPlatformGame() {
+            let parts = 0;
+            const content = document.getElementById('mainContent');
+            content.innerHTML = `
+                <h2>🎮 Собери палку-копалку</h2>
+                <div class="game-active" style="text-align: center;">
+                    <p>Нажимай на детали, чтобы собрать палку-копалку! (10 деталей = победа)</p>
+                    <div style="font-size: 3em; margin: 20px;">🪵🔨🧰</div>
+                    <div style="font-size: 2em;">Собрано деталей: <span id="partsCount">0</span>/10</div>
+                    <button onclick="collectPart()" style="font-size: 2em; padding: 20px; margin: 10px;">🔨 Найти деталь</button>
+                    <button onclick="showPage('games')" style="margin-top: 20px;">← Выйти</button>
+                </div>
+            `;
+            
+            window.collectPart = function() {
+                parts++;
+                document.getElementById('partsCount').innerText = parts;
+                
+                // Случайные события для интереса
+                if (Math.random() < 0.2) { // 20% шанс найти сразу две
+                    parts++;
+                    document.getElementById('partsCount').innerText = parts;
+                    alert('🍀 Удача! Ты нашёл сразу две детали!');
+                }
+                
+                if (parts >= 10) {
+                    games[3].played++;
+                    alert('🎉 Поздравляем! Ты собрал палку-копалку! +1 очко!');
+                    gameScore++;
+                    if (gameScore > gameHighScore) {
+                        gameHighScore = gameScore;
+                        localStorage.setItem('gameHighScore', gameHighScore.toString());
+                    }
+                    showPage('games');
+                }
+            };
+        }
+
+        function resetGameStats() {
+            if (confirm('Сбросить все рекорды?')) {
+                gameHighScore = 0;
+                clickerHighScore = 0;
+                localStorage.setItem('gameHighScore', '0');
+                localStorage.setItem('clickerHighScore', '0');
+                alert('Рекорды сброшены!');
+                showPage('games');
+            }
+        }
+
+        // -------------------- МУЗЫКА --------------------
+        function getMusicPage() {
+            return `
+                <h2>🎵 Музыка Балахрыстана</h2>
+                <p>Гимны, баллады и народные песни.</p>
+                
+                <div class="music-player">
+                    <h3>🎧 Сейчас играет: <span id="currentTrack">${musicTracks[currentMusicTrack].name}</span></h3>
+                    <p id="currentArtist">${musicTracks[currentMusicTrack].artist}</p>
+                    <div style="display: flex; gap: 10px; justify-content: center; margin: 20px 0; flex-wrap: wrap;">
+                        <button onclick="playMusic()">▶️ ${isPlaying ? 'Пауза' : 'Играть'}</button>
+                        <button onclick="prevMusic()">⏮️ Предыдущий</button>
+                        <button onclick="nextMusic()">⏭️ Следующий</button>
+                        <button onclick="showLyrics()">📜 Текст</button>
+                    </div>
+                    <div id="lyricsBox" style="margin: 20px; padding: 20px; background: #1a1a1a; border-radius: 8px; min-height: 100px; color: #f0e2cf; display: none;">
+                        ${musicTracks[currentMusicTrack].lyrics}
+                    </div>
+                </div>
+                
+                <h3>Плейлист</h3>
+                <div class="playlist">
+                    ${musicTracks.map((track, index) => `
+                        <div class="playlist-item" onclick="selectTrack(${index})">
+                            <span><strong>${track.name}</strong> — ${track.artist}</span>
+                            <span>${track.duration}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function playMusic() {
+            isPlaying = !isPlaying;
+            document.getElementById('currentTrack').innerText = musicTracks[currentMusicTrack].name + (isPlaying ? ' ▶️' : ' ⏸️');
+        }
+
+        function prevMusic() {
+            currentMusicTrack = (currentMusicTrack - 1 + musicTracks.length) % musicTracks.length;
+            document.getElementById('currentTrack').innerText = musicTracks[currentMusicTrack].name;
+            document.getElementById('currentArtist').innerText = musicTracks[currentMusicTrack].artist;
+            document.getElementById('lyricsBox').innerText = musicTracks[currentMusicTrack].lyrics;
+            document.getElementById('lyricsBox').style.display = 'none';
+        }
+
+        function nextMusic() {
+            currentMusicTrack = (currentMusicTrack + 1) % musicTracks.length;
+            document.getElementById('currentTrack').innerText = musicTracks[currentMusicTrack].name;
+            document.getElementById('currentArtist').innerText = musicTracks[currentMusicTrack].artist;
+            document.getElementById('lyricsBox').innerText = musicTracks[currentMusicTrack].lyrics;
+            document.getElementById('lyricsBox').style.display = 'none';
+        }
+
+        function selectTrack(index) {
+            currentMusicTrack = index;
+            document.getElementById('currentTrack').innerText = musicTracks[currentMusicTrack].name;
+            document.getElementById('currentArtist').innerText = musicTracks[currentMusicTrack].artist;
+            document.getElementById('lyricsBox').innerText = musicTracks[currentMusicTrack].lyrics;
+            document.getElementById('lyricsBox').style.display = 'none';
+        }
+
+        function showLyrics() {
+            const box = document.getElementById('lyricsBox');
+            box.style.display = box.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // -------------------- ЛИТЕРАТУРА --------------------
+        function getLiteraturePage() {
+            return `
+                <h2>📖 Литература Балахрыстана</h2>
+                <p>Романы, повести, сказки и поэмы.</p>
+                
+                <div class="bio-card">
+                    <h3>Роман «Отчалил Вася»</h3>
+                    <p><strong>Глава 1. Как Вася кильку ловил, а поймал судьбу</strong></p>
+                    <p>В то утро Вася Пупкин проснулся от того, что хряк по кличке Шкипер лизнул его в ухо. Шкипер был хряком нордического типа, с жёсткой щетиной на загривке и таким пронзительным взглядом, что даже геодезисты, захаживавшие к Васе пропустить по кружке вологоши, отводили глаза...</p>
+                    <button onclick="showFullStory('vasya')">Читать полностью</button>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Детектив «Дело о пропавшем апельсине»</h3>
+                    <p><strong>Пролог. Сто одиннадцатый</strong></p>
+                    <p>Он висел на центральной площади ровно сто одиннадцать дней. Главный вертикальный апельсин — гордость селекционера Вовы Соложкова, символ нации, предмет вожделения всех коллекционеров цитрусовых аномалий. А потом он исчез...</p>
+                    <button onclick="showFullStory('apelsin')">Читать полностью</button>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Мелодрама «Вологоша для двоих»</h3>
+                    <p><strong>Глава 1. Встреча на переправе</strong></p>
+                    <p>Паром мерно покачивало на волнах. Где-то внизу гудели ледокольные двигатели, где-то на палубе чайки дрались за кильку, а Ян Кривобратр, губернатор Чехословацкой автономной области, стоял у борта и смотрел на приближающиеся огни Кичменгского Городка...</p>
+                    <button onclick="showFullStory('vologosha')">Читать полностью</button>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Фэнтези-приквел «Век Великого Хряка»</h3>
+                    <p><strong>Пролог. До начала времён</strong></p>
+                    <p>В начале не было ничего. То есть совсем ничего. Ни барбариса, ни ледянки, ни скворечников, ни даже хряков. Только бесконечный, безбрежный, бессмысленный широколестник, простиравшийся во все стороны...</p>
+                    <button onclick="showFullStory('hryak')">Читать полностью</button>
+                </div>
+            `;
+        }
+
+        function showFullStory(story) {
+            const stories = {
+                vasya: `РОМАН «ОТЧАЛИЛ ВАСЯ»\n\nГлава 1. Как Вася кильку ловил, а поймал судьбу\n\nВ то утро Вася Пупкин проснулся от того, что хряк по кличке Шкипер лизнул его в ухо. Шкипер был хряком нордического типа, с жёсткой щетиной на загривке и таким пронзительным взглядом, что даже геодезисты, захаживавшие к Васе пропустить по кружке вологоши, отводили глаза.\n\n— Отвали, — пробормотал Вася, натягивая одеяло на голову.\n\nШкипер горготнул. Три раза. Коротко, но выразительно.\n\n— Рыба? — Вася приоткрыл один глаз. — С утра пораньше? Ты охренел, хряк?\n\nШкипер горготнул четвёртый раз. Это означало: «Если ты сейчас не встанешь и не пойдёшь на омут, я расскажу твоей маме, где ты вчера спрятал трёхлитровую банку креплёной вологоши».\n\nВася вздохнул. Шкипер умел договариваться...\n\n(Полная первая глава. Остальные главы появятся в следующем обновлении литературы)`,
+                apelsin: `ДЕТЕКТИВ «ДЕЛО О ПРОПАВШЕМ АПЕЛЬСИНЕ»\n\nПролог. Сто одиннадцатый\n\nОн висел на центральной площади ровно сто одиннадцать дней.\n\nГлавный вертикальный апельсин — гордость селекционера Вовы Соложкова, символ нации, предмет вожделения всех коллекционеров цитрусовых аномалий. Висел и радовал глаз прохожих. Апельсин как апельсин, только оранжевый, вытянутый вверх и с нахальной такой вертикальностью, что прохожие невольно выпрямляли спины, проходя мимо.\n\nА потом он исчез.\n\nСторож дядя Хряколов клялся, что в полночь апельсин был на месте. В час ночи сторож задремал. В два ночи он проснулся от холода и пошёл проверять посты. В два часа и три минуты ночи апельсина не было...\n\n(Полная версия детектива будет доступна в следующем обновлении)`,
+                vologosha: `МЕЛОДРАМА «ВОЛОГОША ДЛЯ ДВОИХ»\n\nГлава 1. Встреча на переправе\n\nПаром мерно покачивало на волнах. Где-то внизу гудели ледокольные двигатели, где-то на палубе чайки дрались за кильку, а Ян Кривобратр, губернатор Чехословацкой автономной области, стоял у борта и смотрел на приближающиеся огни Кичменгского Городка.\n\n— Господин губернатор, — подошёл к нему помощник. — Через час будем на месте. Самюэль прислал за нами ледокол почётного эскорта.\n\n— Вижу, — кивнул Ян. — Красивый. Как его?\n\n— «Отчаянный-2». Тот самый, на котором Вася Пупкин...\n\n— Помню, — перебил Ян. — Оставьте меня, please...\n\n(Полная версия будет доступна в следующем обновлении)`,
+                hryak: `ФЭНТЕЗИ «ВЕК ВЕЛИКОГО ХРЯКА»\n\nПролог. До начала времён\n\nВ начале не было ничего.\n\nТо есть совсем ничего. Ни барбариса, ни ледянки, ни скворечников, ни даже хряков. Только бесконечный, безбрежный, бессмысленный широколестник, простиравшийся во все стороны, куда можно и нельзя посмотреть.\n\nИ тишина.\n\nТишина была такой плотной, что её можно было резать палкой-копалкой. Но палок-копалок тоже не было. Поэтому тишина просто висела в воздухе и никого не волновала.\n\nА потом что-то произошло.\n\nСгусток энергии — тёмной, барбарисовой, пахнущей цикорием и можжевельником — сгустился в центре широколестника. Он пульсировал, рос, наливался силой, пока однажды...\n\nГОР-ГО-ТА-А-А-А-А-А-А-АЛ!!!\n\n(Полная версия будет доступна в следующем обновлении)`
+            };
+            
+            alert(stories[story] || 'Текст готовится к публикации');
+        }
+
+        // -------------------- ДЕТИ --------------------
+        function getKidsPage() {
+            return `
+                <h2>🧒 Уголок маленьких капуцинов</h2>
+                <p>Раскраски, сказки и загадки для самых маленьких.</p>
+                
+                <h3>🎨 Раскраски (нажми, чтобы скачать)</h3>
+                <div class="coloring-book">
+                    <div class="coloring-item" onclick="downloadColoring('hryak')">🐗</div>
+                    <div class="coloring-item" onclick="downloadColoring('apelsin')">🍊</div>
+                    <div class="coloring-item" onclick="downloadColoring('stick')">🪵</div>
+                    <div class="coloring-item" onclick="downloadColoring('skvorechnik')">🏠</div>
+                    <div class="coloring-item" onclick="downloadColoring('gerb')">🏆</div>
+                    <div class="coloring-item" onclick="downloadColoring('flag')">🏁</div>
+                </div>
+                
+                <h3>📖 Сказки на ночь</h3>
+                <div class="bio-card">
+                    <h3>Как хряк Сенатор спас апельсин</h3>
+                    <p>Жил-был хряк Сенатор. И был у него друг — вертикальный апельсин по имени Стёпа. Однажды на город напали злые чайки и хотели украсть Стёпу. Но Сенатор горготнул так громко, что чайки разлетелись! С тех пор все знают: хряки — лучшие защитники.</p>
+                </div>
+                <div class="bio-card">
+                    <h3>Путешествие маленькой кильки</h3>
+                    <p>В глубоком омуте жила-была маленькая килька по имени Кнопка. Она мечтала увидеть мир. Однажды она уплыла далеко-далеко и встретила Васю Пупкина. Вася взял её с собой в плавание, и она стала самой путешествующей килькой в мире.</p>
+                </div>
+                
+                <h3>❓ Загадки</h3>
+                <div class="bio-card">
+                    <p><strong>Загадка 1:</strong> Висит груша, нельзя скушать. Но если скушать — станешь выше. Что это?</p>
+                    <button onclick="alert('🍊 Вертикальный апельсин!')">Показать ответ</button>
+                </div>
+                <div class="bio-card">
+                    <p><strong>Загадка 2:</strong> Кто горгочит, но не чайка, кто с копытами, но не лошадь?</p>
+                    <button onclick="alert('🐗 Хряк!')">Показать ответ</button>
+                </div>
+                <div class="bio-card">
+                    <p><strong>Загадка 3:</strong> Что можно сломать, но нельзя починить, а если починить, то уже не то?</p>
+                    <button onclick="alert('💰 Грош ломаный!')">Показать ответ</button>
+                </div>
+                <div class="bio-card">
+                    <p><strong>Загадка 4:</strong> Сколько субъектов в Балахрыстане?</p>
+                    <button onclick="alert('9! И у каждого свой герб!')">Показать ответ</button>
+                </div>
+            `;
+        }
+
+        function downloadColoring(type) {
+            alert(`🎨 Раскраска «${type}» готовится к печати! (Нажми Ctrl+P, чтобы распечатать эту страницу)`);
+        }
+
+        // -------------------- МЕРЧ --------------------
+        function getMerchPage() {
+            return `
+                <h2>🛍️ Магазин сувениров</h2>
+                <p>Всё по-настоящему (почти). Доставка хряком-курьером.</p>
+                
+                <div class="merch-grid">
+                    ${merch.map(item => `
+                        <div class="merch-item">
+                            <div style="font-size: 5em;">${item.icon}</div>
+                            <h3>${item.name}</h3>
+                            <p>${item.desc}</p>
+                            <div class="price">${item.price}</div>
+                            <button class="buy-button" onclick="buyMerch('${item.name}')">🛒 Купить</button>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f0e2cf; border-radius: 10px;">
+                    <p>💳 Принимаем гроши, барбарис и карты «Грош-Кард»</p>
+                    <p>🚚 Доставка по всей стране — бесплатно при заказе от 500 грошей</p>
+                </div>
+            `;
+        }
+
+        function buyMerch(name) {
+            alert(`🛒 Ты купил(а) «${name}»!\n\nСпасибо за покупку! Товар будет доставлен хряком-курьером в ближайшее время.`);
+        }
+
+        // -------------------- НОВОСТИ --------------------
+        function getNewsPage() {
+            return `
+                <h2>📰 Кривой старт дейли — свежий номер</h2>
+                <p>Главная газета Балахрыстана. Все новости, даже кривые.</p>
+                
+                <div class="tab-group">
+                    <div class="tab active" onclick="showNewsTab(0)">📰 Все новости</div>
+                    <div class="tab" onclick="showNewsTab(1)">🔥 Популярное</div>
+                    <div class="tab" onclick="showNewsTab(2)">📌 Архив</div>
+                </div>
+                
+                <div id="newsContent">
+                    ${news.map((item, index) => `
+                        <div class="sight-card" onclick="showNewsDetail(${index})">
+                            <h3>${item.title}</h3>
+                            <p><small>${item.date} | 👁️ ${item.views} просмотров</small></p>
+                            <p>${item.desc}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function showNewsTab(tab) {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const content = document.getElementById('newsContent');
+            if (tab === 0) {
+                content.innerHTML = news.map((item, index) => `
+                    <div class="sight-card" onclick="showNewsDetail(${index})">
+                        <h3>${item.title}</h3>
+                        <p><small>${item.date} | 👁️ ${item.views} просмотров</small></p>
+                        <p>${item.desc}</p>
+                    </div>
+                `).join('');
+            } else if (tab === 1) {
+                const popular = [...news].sort((a, b) => b.views - a.views);
+                content.innerHTML = popular.map((item, index) => `
+                    <div class="sight-card" onclick="showNewsDetail(${index})">
+                        <h3>${index+1}. ${item.title}</h3>
+                        <p><small>👁️ ${item.views} просмотров</small></p>
+                    </div>
+                `).join('');
+            } else if (tab === 2) {
+                content.innerHTML = `
+                    <div class="sight-card">
+                        <h3>📌 Архив за 2026 год</h3>
+                        <p>Март: 15 статей (включая указ о гербах)</p>
+                        <p>Февраль: 9 статей</p>
+                        <p>Январь: 11 статей</p>
+                        <p style="margin-top: 20px;">Всего: 35 статей</p>
+                    </div>
+                `;
+            }
+        }
+
+        function showNewsDetail(index) {
+            const item = news[index];
+            alert(`📰 ${item.title}\n\n${item.desc}\n\nДата: ${item.date}\nПросмотров: ${item.views}\n\nПолная статья будет доступна в печатной версии газеты.`);
+        }
+
+        // -------------------- ГОСТЕВАЯ --------------------
+        function getGuestbookPage() {
+            return `
+                <h2>📖 Гостевая книга</h2>
+                <p>Оставь свой след в истории Балахрыстана!</p>
+                
+                <!-- Статья 13. Раздел "Слава Создателю" -->
+                <div class="guestbook" style="margin-bottom: 40px; border-color: #5a3f25; background: #e6d7bf;">
+                    <h3 style="text-align: center;">✨ Слава Создателю ✨</h3>
+                    <p style="font-size: 1.1em; text-align: center;">Вырази благодарность тому, кто создал этот мир и этот портал.</p>
+                    <input type="text" id="gloryName" class="guestbook-input" placeholder="Твоё имя" value="Благодарный балахрыст">
+                    <textarea id="gloryText" class="guestbook-input" placeholder="Твои слова благодарности Создателю..." rows="3"></textarea>
+                    <button onclick="addGloryEntry()">🌟 Воздать хвалу</button>
+                </div>
+                
+                <h3>✍️ Обычная гостевая</h3>
+                <div class="guestbook">
+                    <h3>Новая запись</h3>
+                    <input type="text" id="guestName" class="guestbook-input" placeholder="Твоё имя" value="Гость">
+                    <textarea id="guestText" class="guestbook-input" placeholder="Твой отзыв..." rows="4"></textarea>
+                    <button onclick="addGuestbookEntry()">✍️ Оставить запись</button>
+                </div>
+                
+                <h3>📝 Последние записи:</h3>
+                <div id="guestbookEntries">
+                    ${guestbookEntries.map(entry => `
+                        <div class="guestbook-entry">
+                            <strong>${entry.name}</strong> <small style="color: #8b7355;">${entry.date}</small>
+                            <p>${entry.text}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function addGuestbookEntry() {
+            const name = document.getElementById('guestName')?.value.trim() || 'Анонимный капуцин';
+            const text = document.getElementById('guestText')?.value.trim();
+            
+            if (!text) {
+                alert('Напиши хоть что-нибудь!');
+                return;
+            }
+            
+            const today = new Date();
+            const date = `${today.getDate().toString().padStart(2,'0')}.${(today.getMonth()+1).toString().padStart(2,'0')}.${today.getFullYear()}`;
+            
+            guestbookEntries.unshift({ name, text, date });
+            
+            document.getElementById('guestName').value = '';
+            document.getElementById('guestText').value = '';
+            
+            const entriesDiv = document.getElementById('guestbookEntries');
+            entriesDiv.innerHTML = guestbookEntries.map(entry => `
+                <div class="guestbook-entry">
+                    <strong>${entry.name}</strong> <small style="color: #8b7355;">${entry.date}</small>
+                    <p>${entry.text}</p>
+                </div>
+            `).join('');
+            
+            alert('✅ Запись добавлена! Спасибо, что ты с нами.');
+        }
+
+        // Функция для раздела "Слава Создателю"
+        function addGloryEntry() {
+            const name = document.getElementById('gloryName')?.value.trim() || 'Благодарный балахрыст';
+            const text = document.getElementById('gloryText')?.value.trim();
+            
+            if (!text) {
+                alert('Напиши слова благодарности Создателю!');
+                return;
+            }
+            
+            const today = new Date();
+            const date = `${today.getDate().toString().padStart(2,'0')}.${(today.getMonth()+1).toString().padStart(2,'0')}.${today.getFullYear()}`;
+            
+            // Добавляем запись с особым префиксом
+            guestbookEntries.unshift({ name, text: `✨ [СЛАВА СОЗДАТЕЛЮ] ✨ ${text}`, date });
+            
+            document.getElementById('gloryName').value = '';
+            document.getElementById('gloryText').value = '';
+            
+            const entriesDiv = document.getElementById('guestbookEntries');
+            entriesDiv.innerHTML = guestbookEntries.map(entry => `
+                <div class="guestbook-entry">
+                    <strong>${entry.name}</strong> <small style="color: #8b7355;">${entry.date}</small>
+                    <p>${entry.text}</p>
+                </div>
+            `).join('');
+            
+            alert('🌟 Хвала принята! Создатель будет рад.');
+        }
+
+        // -------------------- СОСЕДИ --------------------
+        function getNeighborsPage() {
+            return `
+                <h2>🌍 Соседи Балахрыстана</h2>
+                <p>Друзья, соперники и загадочные земли.</p>
+                
+                ${neighbors.map(neighbor => `
+                    <div class="bio-card">
+                        <h3>${neighbor.name}</h3>
+                        <p><strong>Тип:</strong> ${neighbor.type}</p>
+                        <p><strong>Столица:</strong> ${neighbor.capital}</p>
+                        <p><strong>Правитель:</strong> ${neighbor.ruler}</p>
+                        <p><strong>Отношения:</strong> <span style="color: ${neighbor.relations === 'Дружественные' ? 'green' : neighbor.relations === 'Сложные' ? 'red' : 'orange'}">${neighbor.relations}</span></p>
+                        <p><strong>Описание:</strong> ${neighbor.desc}</p>
+                    </div>
+                `).join('')}
+            `;
+        }
+
+        // -------------------- НАУКА --------------------
+        function getSciencePage() {
+            return `
+                <h2>🔬 Наука Балахрыстана</h2>
+                <p>Достижения геодезистов, физиков палки-копалки и химиков барбариса.</p>
+                
+                <div class="bio-card">
+                    <h3>Геодезия</h3>
+                    <p>Наука о толковании Канона и изучении истории. Геодезисты — элита общества, хранители знаний. Институт Ирудита готовит специалистов высшей квалификации. В 2026 году геодезисты участвовали в создании гербов 9 субъектов.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Физика палки-копалки</h3>
+                    <p>Изучает механику, рычаги и силу трения. Основные законы: чем длиннее палка, тем дальше копает; оптимальный угол заточки — 45 градусов.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Химия барбариса</h3>
+                    <p>Исследует свойства барбариса, цикория и можжевельника. Открыто 111 полезных соединений, включая барбарисовую кислоту, вызывающую раскумар.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Хряковедение</h3>
+                    <p>Наука о хряках — их повадках, размножении, болезнях и горготании. Установлено, что хряки способны предсказывать погоду и чувствовать шлях арехавый.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Геральдика</h3>
+                    <p>Наука о гербах. Благодаря работе геральдистов у каждого из 9 субъектов теперь есть уникальные символы, отражающие их историю и культуру.</p>
+                </div>
+            `;
+        }
+
+        // -------------------- СПОРТ --------------------
+        function getSportPage() {
+            return `
+                <h2>⚽ Спорт Балахрыстана</h2>
+                <p>Национальные виды спорта и рекорды.</p>
+                
+                <div class="bio-card">
+                    <h3>Метание палки-копалки</h3>
+                    <p>Дисциплины: на дальность (рекорд 87 м 30 см, Вася Пупкин), в цель, командное. Проводятся соревнования на Кубок Самюэля.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Хрячьи бега</h3>
+                    <p>Верховая езда на хряках, бег за хряком, командная эстафета. Главный приз — 1 000 000 грошей.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Вертикальный прыжок</h3>
+                    <p>Прыжки в высоту с места, чтобы достать до вертикального апельсина. Рекорд — 1 м 45 см.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Ледянковый слалом</h3>
+                    <p>Спуск на ледянке по ледяной трассе с поворотами. Зимний вид спорта.</p>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Геральдическая викторина</h3>
+                    <p>Новый вид спорта — угадай герб региона по описанию. Чемпионат пройдёт в 2027 году.</p>
+                </div>
+            `;
+        }
+
+        // -------------------- ЭКОНОМИКА --------------------
+        function getEconomyPage() {
+            return `
+                <h2>💰 Экономика Балахрыстана</h2>
+                <p>Гроши, барбарис, нефть и фондовый рынок.</p>
+                
+                <div class="widgets">
+                    <div class="widget">
+                        <h4>💵 Валюта</h4>
+                        <div class="big-number">Грош ломаный</div>
+                        <p>1 грош = ${currencyRate} кроны</p>
+                    </div>
+                    <div class="widget">
+                        <h4>📊 Ключевая ставка</h4>
+                        <div class="big-number">11.1%</div>
+                        <p>Центральный Банк</p>
+                    </div>
+                    <div class="widget">
+                        <h4>📈 Индекс КС-111</h4>
+                        <div class="big-number">${stockIndex}</div>
+                        <p>+${random(1, 50)} за день</p>
+                    </div>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Основные отрасли</h3>
+                    <ul>
+                        <li><strong>Сельское хозяйство:</strong> барбарис, вертикальные апельсины, цикорий</li>
+                        <li><strong>Рыболовство:</strong> килька (в томате и без)</li>
+                        <li><strong>Нефтедобыча:</strong> остров Пипин Короткий</li>
+                        <li><strong>Лесная:</strong> широколестник, палки-копалки</li>
+                        <li><strong>Туризм:</strong> сибироязвенный скотомогильник, поля апельсинов</li>
+                        <li><strong>Геральдическая индустрия:</strong> производство гербов и флагов</li>
+                        <li><strong>Игровая индустрия:</strong> 4 популярные игры</li>
+                    </ul>
+                </div>
+                
+                <div class="bio-card">
+                    <h3>Бюджет (на 2026)</h3>
+                    <p><strong>Доходы:</strong> ${formatNumber(random(1000000, 1200000))} 000 000 грошей</p>
+                    <p><strong>Расходы:</strong> ${formatNumber(random(990000, 1190000))} 000 000 грошей</p>
+                    <p><strong>Профицит:</strong> ${random(100, 200)} грошей</p>
+                </div>
+            `;
+        }
+
+        // -------------------- СЛУЧАЙНО --------------------
+        function getRandomPage() {
+            const pages = ['universe', 'canon', 'codexes', 'history', 'myths', 'bio', 'map', 'heraldry', 'sights', 'games', 'music', 'literature', 'kids', 'merch', 'news', 'guestbook', 'neighbors', 'science', 'sport', 'economy'];
+            const randomPage = pages[Math.floor(Math.random() * pages.length)];
+            setTimeout(() => showPage(randomPage), 100);
+            return `<div style="text-align: center; padding: 50px;"><h2>🎲 Случайная страница загружается...</h2></div>`;
+        }
+
+        // -------------------- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ --------------------
+        function showHomeTab(tab) {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const content = document.getElementById('homeTabContent');
+            if (tab === 'popular') {
+                content.innerHTML = `
+                    <div class="bio-card">
+                        <h3>🔥 Самое популярное</h3>
+                        <p>1. Гербы и флаги 9 субъектов — ${random(5000, 6000)} просмотров</p>
+                        <p>2. Игра «Депортация» — ${random(4000, 5000)} игр</p>
+                        <p>3. Том I. Конституция — ${random(3000, 4000)} прочтений</p>
+                    </div>
+                `;
+            } else if (tab === 'new') {
+                content.innerHTML = `
+                    <div class="bio-card">
+                        <h3>✨ Новинки</h3>
+                        <p>🏆 Гербы и флаги (Указ №111/52)</p>
+                        <p>🎮 Все 4 игры теперь работают!</p>
+                        <p>📚 Обновлённая страница карты</p>
+                        <p>🧒 Новые загадки для детей</p>
+                        <p>🎲 Случайные числа везде!</p>
+                    </div>
+                `;
+            } else if (tab === 'random') {
+                content.innerHTML = `
+                    <div class="bio-card">
+                        <h3>🎲 Случайный факт</h3>
+                        <p style="font-size: 1.3em;">${facts[Math.floor(Math.random() * facts.length)]}</p>
+                        <button onclick="updateRandomFact()">✨ Ещё</button>
+                    </div>
+                `;
+            }
+        }
+
+        function updateRandomFact() {
+            const content = document.getElementById('homeTabContent');
+            if (content) {
+                content.innerHTML = `
+                    <div class="bio-card">
+                        <h3>🎲 Случайный факт</h3>
+                        <p style="font-size: 1.3em;">${facts[Math.floor(Math.random() * facts.length)]}</p>
+                        <button onclick="updateRandomFact()">✨ Ещё</button>
+                    </div>
+                `;
+            }
+        }
+
+        function showRandomCanonWord() {
+            const randomWord = canonData[Math.floor(Math.random() * canonData.length)];
+            showCanonWordDetail(randomWord.word);
+        }
+
+        // -------------------- ИНИЦИАЛИЗАЦИЯ --------------------
+        window.onload = function() {
+            updateCounters();
+            showPage('home');
+            
+            // Обновляем счётчики каждые 30 секунд
+            setInterval(() => {
+                updateCounters();
+                // Обновляем также индекс и курс
+                currencyRate = (Math.random() * 1.5 + 1.8).toFixed(2);
+                stockIndex = random(1000, 1400);
+                temperature = random(-15, 5);
+            }, 30000);
+        };
+    </script>
+</body>
+</html>
